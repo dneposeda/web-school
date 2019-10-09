@@ -3,7 +3,7 @@ Angular Global Mentoring Program [2019Q3]
 ### Built With
  - **[Angular 8](https://nodejs.org/)** - The web framework used
 ### Development server
-Run
+Run 
  ```sh
 $ ng serve
 ```
