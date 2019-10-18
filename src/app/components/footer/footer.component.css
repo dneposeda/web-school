@@ -1,0 +1,11 @@
+.footer {
+    background-color: #414452;
+    color: #ffffff;
+    padding: 10px 0;
+}
+
+.copyright {
+    display: flex;
+    justify-content: flex-end;
+    color: #c0c3ce;
+}
