@@ -9,8 +9,8 @@ import { ICourse } from 'src/app/interfaces/icourse';
 })
 export class CourseComponent implements OnInit {
 
-    public faClock = faClock;
-    public faCalendarAlt = faCalendarAlt;
+    faClock = faClock;
+    faCalendarAlt = faCalendarAlt;
     faPen = faPen;
     faTrash = faTrash;
 
