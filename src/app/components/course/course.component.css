@@ -33,3 +33,16 @@
 .faIcon {
     margin-right: 4px;
 }
+
+.action-btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action-btns .btn {
+    margin-right: 13px;
+}
+
+.action-btns .btn:last-child {
+    margin-right: 0;
+}

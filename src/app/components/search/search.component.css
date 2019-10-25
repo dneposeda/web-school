@@ -1,0 +1,18 @@
+.search {
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    margin-right: 6px;
+    background-color: white;
+    background-image: url('/assets/img/icons/ic-search.svg');
+    background-position: 14px 10px;
+    background-repeat: no-repeat;
+    padding-left: 45px;
+}
+
+.input::placeholder {
+    color: #c0c3ce;
+}

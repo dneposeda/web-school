@@ -1,0 +1,16 @@
+.user-info__wrapp {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-info {
+    margin-right: 25px;
+}
+
+.user-info:last-child {
+    margin-right: 0;
+}
+
+.faIcon {
+    margin-right: 4px;
+}

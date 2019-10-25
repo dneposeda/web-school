@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faCoffee, faClock, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faCalendarAlt, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ICourse } from 'src/app/interfaces/icourse';
 
 @Component({
@@ -9,9 +9,10 @@ import { ICourse } from 'src/app/interfaces/icourse';
 })
 export class CourseComponent implements OnInit {
 
-    public faCoffee = faCoffee;
     public faClock = faClock;
     public faCalendarAlt = faCalendarAlt;
+    faPen = faPen;
+    faTrash = faTrash;
 
     @Input() course: ICourse;
 
