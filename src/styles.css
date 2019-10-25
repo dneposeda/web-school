@@ -12,3 +12,45 @@ body {
     line-height: 1.7;
     color: #2c2f3c;
 }
+
+a {
+    color: #577ce6;
+}
+
+.btn {
+    border-radius: 3px;
+    border: 1px solid transparent;
+    color: #ffffff;
+    padding: 8px 22px;
+    background-color: #2c2f3c;
+}
+
+.btn-sm {
+    font-size: 12px;
+    padding: 5px 16px;
+}
+.btn-lg {
+    padding: 10px 22px;
+    font-size: 18px;
+}
+
+.btn-success {
+    background-color: #9bc837;
+    border: 1px solid #9bc837;
+}
+
+.btn-primary {
+    background-color: #30b6dd;
+    border: 1px solid #30b6dd;
+}
+
+.input {
+    padding: 7px 12px;
+    border: 1px solid #d9dbe3;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.input-lg {
+    padding: 14px 22px;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse } from 'src/app/interfaces/icourse';
 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
     selector: 'app-courses-list',
     templateUrl: './courses-list.component.html',
@@ -8,6 +10,7 @@ import { ICourse } from 'src/app/interfaces/icourse';
 })
 export class CoursesListComponent implements OnInit {
 
+    faPlus = faPlus;
     public courses: Array<ICourse>;
 
     constructor() {
