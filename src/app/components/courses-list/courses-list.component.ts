@@ -11,7 +11,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export class CoursesListComponent implements OnInit {
 
     faPlus = faPlus;
-    public courses: Array<ICourse>;
+    courses: Array<ICourse>;
 
     constructor() {
         this.courses = [
