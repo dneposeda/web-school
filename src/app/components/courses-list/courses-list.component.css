@@ -1,0 +1,24 @@
+.faIcon {
+    margin-right: 4px;
+}
+
+.action-block {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 11px;
+}
+
+.course {
+    border-radius: 8px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    background-color: #ffffff;
+    margin-bottom: 25px;
+    padding: 25px 25px 30px;
+}
+
+.course--load-more {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+    padding: 14px 25px;
+}
