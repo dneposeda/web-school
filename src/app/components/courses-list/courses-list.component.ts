@@ -10,10 +10,14 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class CoursesListComponent implements OnInit {
 
+    // Icons FontAwesome
     faPlus = faPlus;
+
     courses: Array<ICourse>;
 
-    constructor() {
+    constructor() {}
+
+    ngOnInit() {
         this.courses = [
             {
                 id: 1,
@@ -49,7 +53,12 @@ export class CoursesListComponent implements OnInit {
         ];
     }
 
-    ngOnInit() {
+    loadMoreCourses(): void {
+        console.log('Load more course');
+    }
+
+    deleteCourse(id: any): void {
+        console.log(id);
     }
 
 }

@@ -6,15 +6,30 @@
     padding: 0;
 }
 
-body {
+html, body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     line-height: 1.7;
     color: #2c2f3c;
+    height: 100%;
 }
 
 a {
     color: #577ce6;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.content {
+	flex: 1 0 auto;
+}
+
+.footer {
+	flex: 0 0 auto;
 }
 
 .btn {
