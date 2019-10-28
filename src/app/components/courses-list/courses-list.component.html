@@ -6,13 +6,13 @@
     </button>
 </div>
 <div *ngFor="let course of courses">
-    <app-course [course]="course"></app-course>
+    <app-course [course]="course" (delete)="deleteCourse($event)"></app-course>
 </div>
 
 <div class="container course course--load-more">
     <div class="row">
         <div class="col">
-            <p><a href="" >Load More</a></p>
+            <p><a href="" (click)="loadMoreCourses($event)">Load More</a></p>
         </div>
     </div>
 </div>
