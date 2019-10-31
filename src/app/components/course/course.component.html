@@ -1,32 +1,32 @@
 <div class="container course">
     <div class="row">
         <div class="col">
-            <h2 class="course__title">{{course.title}}</h2>
+            <h2 class="course__title">{{course?.title}}</h2>
         </div>
         <div class="col-5">
             <div class="course__info">
                 <span class="course__info-duration">
                     <fa-icon class="faIcon" [icon]="faClock" size="lg"></fa-icon>
-                    {{course.duration | duration}}
+                    {{course?.duration | duration}}
                 </span>
                 <span class="course__info-date">
                     <fa-icon class="faIcon" [icon]="faCalendarAlt" size="lg"></fa-icon>
-                    {{course.creationDate}}
+                    {{course?.creationDate}}
                 </span>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <p class="course__desc">{{course.description}}</p>
+            <p class="course__desc">{{course?.description}}</p>
         </div>
         <div class="col-3 align-self-center">
             <div class="action-btns">
-                <button class="btn btn-primary btn-sm">
+                <button type="button" class="btn btn-primary btn-sm">
                     <fa-icon class="faIcon" [icon]="faPen" size="sm"></fa-icon>
                     Edit
                 </button>
-                <button (click)="deleteCourse($event)" class="btn btn-primary btn-sm">
+                <button (click)="deleteCourse($event)" type="button" class="btn btn-primary btn-sm">
                     <fa-icon class="faIcon" [icon]="faTrash" size="sm"></fa-icon>
                     Delete
                 </button>
