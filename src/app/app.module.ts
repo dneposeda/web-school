@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -14,6 +16,17 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PageComponent } from './components/page/page.component';
 import { DurationPipe } from './pipe/duration.pipe';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+
+const appRoutes: Routes = [
+    { path: 'courses', component: CoursesListComponent },
+    {
+        path: '',
+        redirectTo: '/courses',
+        pathMatch: 'full'
+    },
+    { path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
     declarations: [
@@ -28,10 +41,17 @@ import { DurationPipe } from './pipe/duration.pipe';
         UserInfoComponent,
         PageComponent,
         DurationPipe,
+        NotFoundComponent,
     ],
     imports: [
+        RouterModule.forRoot(
+            appRoutes,
+            // { enableTracing: true } // debugging purposes only
+        ),
         BrowserModule,
         FontAwesomeModule,
+        FormsModule,
+        RouterModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
