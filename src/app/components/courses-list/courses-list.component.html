@@ -1,6 +1,6 @@
 <app-search></app-search>
 <div class="action-block">
-    <button class="btn btn-primary">
+    <button type="button" class="btn btn-primary">
         <fa-icon class="faIcon" [icon]="faPlus" size="lg"></fa-icon>
         Add course
     </button>
@@ -12,7 +12,7 @@
 <div class="container course course--load-more">
     <div class="row">
         <div class="col">
-            <p><a href="" (click)="loadMoreCourses($event)">Load More</a></p>
+            <p><button type="button" class="btn--non-style" (click)="loadMoreCourses($event)">Load More</button></p>
         </div>
     </div>
 </div>
