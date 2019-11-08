@@ -11,7 +11,11 @@ describe('DurationPipe', () => {
         expect(pipe).toBeTruthy();
     });
 
-    it('duration pipe', () => {
-        expect(pipe.transform(121)).toBe('2h 1 min');
+    it('duration pipe with H and M', () => {
+        expect(pipe.transform(121)).toBe('2 h 1 min');
+    });
+
+    it('duration pipe without H', () => {
+        expect(pipe.transform(59)).toBe('59 min');
     });
 });

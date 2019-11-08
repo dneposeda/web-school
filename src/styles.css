@@ -18,6 +18,11 @@ a {
     color: #577ce6;
 }
 
+input {
+    font-family: "Source Sans Pro", sans-serif;
+    color: #525462;
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;

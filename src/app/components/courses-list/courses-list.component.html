@@ -5,14 +5,30 @@
         Add course
     </button>
 </div>
-<div *ngFor="let course of courses">
-    <app-course [course]="course" (delete)="deleteCourse($event)"></app-course>
-</div>
 
-<div class="container course course--load-more">
-    <div class="row">
-        <div class="col">
-            <p><button type="button" class="btn--non-style" (click)="loadMoreCourses($event)">Load More</button></p>
+<div *ngIf="courses.length">
+    <div *ngFor="let course of courses | orderBy:'creationDate'">
+        <app-course [course]="course" (delete)="deleteCourse($event)"></app-course>
+    </div>
+
+    <div class="container course course--load-more">
+        <div class="row">
+            <div class="col">
+                <p><button type="button" class="btn--non-style" (click)="loadMoreCourses($event)">Load More</button></p>
+            </div>
         </div>
     </div>
 </div>
+
+<div *ngIf="!courses.length">
+    <div class="container course course--no-data">
+        <div class="row">
+            <div class="col">
+                <p>No data. Feel to add new course.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
