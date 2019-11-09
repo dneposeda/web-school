@@ -1,4 +1,4 @@
-<app-search></app-search>
+<app-search (text)="find($event)"></app-search>
 <div class="action-block">
     <button type="button" class="btn btn-primary">
         <fa-icon class="faIcon" [icon]="faPlus" size="lg"></fa-icon>
@@ -6,8 +6,8 @@
     </button>
 </div>
 
-<div *ngIf="courses.length">
-    <div *ngFor="let course of courses | orderBy:'creationDate'">
+<div *ngIf="coursesList.length">
+    <div *ngFor="let course of coursesList | orderBy:'creationDate'">
         <app-course [course]="course" (delete)="deleteCourse($event)"></app-course>
     </div>
 
@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<div *ngIf="!courses.length">
+<div *ngIf="!coursesList.length">
     <div class="container course course--no-data">
         <div class="row">
             <div class="col">

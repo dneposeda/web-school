@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse } from 'src/app/interfaces/icourse';
-
+import { FilterByPipe } from 'src/app/pipe/filter-by.pipe';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-courses-list',
     templateUrl: './courses-list.component.html',
-    styleUrls: ['./courses-list.component.css']
+    styleUrls: ['./courses-list.component.css'],
+    providers: [
+        FilterByPipe,
+    ]
 })
 export class CoursesListComponent implements OnInit {
 
@@ -14,14 +17,16 @@ export class CoursesListComponent implements OnInit {
     faPlus = faPlus;
 
     courses: Array<ICourse>;
+    coursesList: Array<ICourse>;
 
-    constructor() {}
+
+    constructor( private filterBy: FilterByPipe) {}
 
     ngOnInit() {
         this.courses = [
             {
                 id: 1,
-                title: 'Video Course 1. Name tag',
+                title: 'Video Course 1. JavaScript',
                 creationDate: '30 May 2018',
                 duration: 88,
                 description:
@@ -32,7 +37,7 @@ export class CoursesListComponent implements OnInit {
                 topRated: true,
             }, {
                 id: 2,
-                title: 'Video Course 2. Name tag',
+                title: 'Video Course 2. Java tag',
                 creationDate: '09/10/2019',
                 duration: 61,
                 description:
@@ -54,6 +59,8 @@ export class CoursesListComponent implements OnInit {
                 topRated: true,
             }
         ];
+
+        this.coursesList = this.courses;
     }
 
     loadMoreCourses(): void {
@@ -62,6 +69,10 @@ export class CoursesListComponent implements OnInit {
 
     deleteCourse(id: any): void {
         console.log(id);
+    }
+
+    find(searchText: string){
+        this.coursesList = this.filterBy.transform(this.courses, 'title', searchText)
     }
 
 }

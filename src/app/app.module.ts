@@ -18,6 +18,7 @@ import { PageComponent } from './components/page/page.component';
 import { DurationPipe } from './pipe/duration.pipe';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OrderByPipe } from './pipe/order-by.pipe';
+import { FilterByPipe } from './pipe/filter-by.pipe';
 
 const appRoutes: Routes = [
     { path: 'courses', component: CoursesListComponent },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
         DurationPipe,
         OrderByPipe,
         NotFoundComponent,
+        FilterByPipe,
     ],
     imports: [
         RouterModule.forRoot(
