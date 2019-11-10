@@ -17,6 +17,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PageComponent } from './components/page/page.component';
 import { DurationPipe } from './pipe/duration.pipe';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { OrderByPipe } from './pipe/order-by.pipe';
+import { FilterByPipe } from './pipe/filter-by.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 const appRoutes: Routes = [
     { path: 'courses', component: CoursesListComponent },
@@ -41,7 +44,10 @@ const appRoutes: Routes = [
         UserInfoComponent,
         PageComponent,
         DurationPipe,
+        OrderByPipe,
         NotFoundComponent,
+        FilterByPipe,
+        HighlightDirective,
     ],
     imports: [
         RouterModule.forRoot(

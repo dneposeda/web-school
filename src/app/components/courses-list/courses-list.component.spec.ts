@@ -6,6 +6,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from '../course/course.component';
 import { FormsModule } from '@angular/forms';
 import { DurationPipe } from 'src/app/pipe/duration.pipe';
+import { OrderByPipe } from 'src/app/pipe/order-by.pipe';
 
 describe('CoursesListComponent', () => {
     let component: CoursesListComponent;
@@ -19,6 +20,7 @@ describe('CoursesListComponent', () => {
                 FaIconComponent,
                 CourseComponent,
                 DurationPipe,
+                OrderByPipe,
             ],
             imports: [
                 FormsModule,

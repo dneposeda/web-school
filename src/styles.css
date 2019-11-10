@@ -4,6 +4,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -16,6 +17,13 @@ html, body {
 
 a {
     color: #577ce6;
+}
+
+input {
+    font-family: "Source Sans Pro", sans-serif;
+    color: #525462;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .wrapper {
@@ -57,8 +65,9 @@ a {
     padding: 5px 16px;
 }
 .btn-lg {
-    padding: 10px 22px;
+    padding: 8px 22px;
     font-size: 18px;
+    line-height: 29px;
 }
 
 .btn-success {
@@ -79,5 +88,5 @@ a {
 }
 
 .input-lg {
-    padding: 14px 22px;
+    padding: 11px 22px;
 }

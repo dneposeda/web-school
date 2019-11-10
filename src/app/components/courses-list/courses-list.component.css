@@ -16,9 +16,13 @@
     padding: 25px 25px 30px;
 }
 
-.course--load-more {
+.course--load-more, .course--no-data {
     text-transform: uppercase;
     text-align: center;
     font-size: 12px;
     padding: 14px 25px;
+}
+
+.course--no-data {
+    font-size: 16px;
 }

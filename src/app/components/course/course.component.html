@@ -1,7 +1,13 @@
-<div class="container course">
+<div class="container course"
+    [ngClass]="{ 'top-rated' : course?.topRated }"
+    [appHighlight] = "course.creationDate"
+>
     <div class="row">
-        <div class="col">
-            <h2 class="course__title">{{course?.title}}</h2>
+        <div class="col course__head">
+            <h2 class="course__title">{{course?.title | uppercase}}</h2>
+            <span *ngIf="course?.topRated">
+                <fa-icon class="faIcon top-rated" [icon]="faStar"></fa-icon>
+            </span>
         </div>
         <div class="col-5">
             <div class="course__info">
@@ -11,14 +17,16 @@
                 </span>
                 <span class="course__info-date">
                     <fa-icon class="faIcon" [icon]="faCalendarAlt" size="lg"></fa-icon>
-                    {{course?.creationDate}}
+                    {{course?.creationDate | date:'d MMM, yyyy' }}
                 </span>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <p class="course__desc">{{course?.description}}</p>
+            <p class="course__desc"
+                [ngClass]="{ 'top-rated' : course?.topRated }"
+            >{{course?.description}}</p>
         </div>
         <div class="col-3 align-self-center">
             <div class="action-btns">
