@@ -6,10 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class OrderByPipe implements PipeTransform {
     transform(items: any[], fieldName: any, ...args: any[]): any {
         if (!Array.isArray(items)) {
-            return;
+            return items;
         }
 
         if (fieldName) {
+            items = items.slice(0);
             items.sort((a: any, b: any) => {
                 return this.sort(a, b, fieldName);
             });

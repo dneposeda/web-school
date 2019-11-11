@@ -17,7 +17,6 @@ export class SearchComponent implements OnInit {
 
     find(): void {
         this.text.emit(this.searchText);
-        this.searchText = '';
     }
 
 }
