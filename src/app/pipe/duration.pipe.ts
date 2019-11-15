@@ -10,8 +10,10 @@ export class DurationPipe implements PipeTransform {
         const minutes = (hours - rHours) * 60;
         const rMinutes = Math.round(minutes);
 
+        let rStringHours = rHours > 0 ? `${rHours} h ` : ''
+        let rStringMin = rMinutes > 0 ? `${rMinutes} min` : ''
 
-        return rHours ? `${rHours} h ${rMinutes} min` : `${rMinutes} min`
+        return rStringHours + rStringMin
 
     }
 }
