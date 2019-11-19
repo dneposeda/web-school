@@ -21,6 +21,7 @@ export class CoursesListComponent implements OnInit {
     courses: Array<ICourse>;
     coursesList: Array<ICourse>;
 
+    private searchText: string;
 
     constructor( private filterBy: FilterByPipe, private courcesService: CourcesService) {}
 
@@ -34,12 +35,19 @@ export class CoursesListComponent implements OnInit {
     }
 
     deleteCourse(id: any): void {
-        const isDelete = confirm(`Are you sure you want to delete?\nId course - ${id}`);
-        isDelete && this.courcesService.removeItem(id);
+        if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) return;
+        this.courcesService.removeItem(id);
+        this.courses = this.courcesService.getList();
+        if (this.searchText) {
+            this.find(this.searchText);
+        } else {
+            this.coursesList = this.courses;
+        }
     }
 
     find(searchText: string){
-        this.coursesList = this.filterBy.transform(this.courses, 'title', searchText)
+        this.searchText = searchText;
+        this.coursesList = this.filterBy.transform(this.courses, 'title', searchText);
     }
 
 }

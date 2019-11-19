@@ -6,16 +6,5 @@ import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-
-    public isAuth: Boolean;
-
-    constructor(private authService: AuthService) { }
-
-    ngOnInit() {
-        this.isAuth = this.authService.isAuthenticated();
-    }
-
-
-
+export class HeaderComponent {
 }
