@@ -8,15 +8,15 @@
                         <form action="">
                             <div class="login-field">
                                 <label for="email" class="login-lable">E-mail:</label>
-                                <input type="email" name="email" id="email" placeholder="example@mail.com" class="input">
+                                <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="example@mail.com" class="input">
                             </div>
                             <div class="login-field">
                                 <label for="password" class="login-lable">Password:</label>
-                                <input type="password" name="password" id="password" class="input" placeholder="Entre password">
+                                <input type="password" [(ngModel)]="password" name="password" id="password" class="input" placeholder="Entre password">
                             </div>
                             <div class="login-btns">
                                 <button class="btn btn--non-style" type="button">Forgot password?</button>
-                                <button (click)="login()" class="btn btn-success" type="button">Login</button>
+                                <button (click)="login()" class="btn btn-success" type="button" [disabled]="!email || !password">Login</button>
                             </div>
                         </form>
                     </div>

@@ -61,16 +61,20 @@ export class CourcesService {
         return this.courses;
     }
 
-    getItemById(id: Number): void {
-        console.log('getItemById')
+    getItemById(id: number): void {
+        console.log('getItemById');
     }
 
-    updateItem(id: Number): void {
-        console.log('updateItem')
+    updateItem(id: number): void {
+        console.log('updateItem');
     }
 
-    removeItem(id: Number): void {
-        console.log(`removeItem - ${id}`)
+    removeItem(id: number): void {
+        const index = this.courses.findIndex(item => item.id === id);
+        if (index >= 0) {
+            this.courses = this.courses.slice(0);
+            this.courses.splice(index, 1);
+        }
     }
 
     createCourse(course): void {

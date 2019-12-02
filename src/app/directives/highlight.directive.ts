@@ -22,9 +22,9 @@ export class HighlightDirective implements OnInit {
         this.upcoming = this.creationDate > this.currentDate;
 
         if (this.fresh) {
-            this.render.addClass(this.elementRef.nativeElement, 'fresh')
+            this.render.addClass(this.elementRef.nativeElement, 'fresh');
         } else if (this.upcoming) {
-            this.render.addClass(this.elementRef.nativeElement, 'upcoming')
+            this.render.addClass(this.elementRef.nativeElement, 'upcoming');
         }
     }
 }

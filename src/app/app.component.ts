@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    isAuth: Boolean = false;
+    isAuth = false;
 
 }

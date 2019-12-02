@@ -4,27 +4,27 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class AuthService {
+    private username: string;
 
-    public isAuth: Boolean;
+    constructor() {
+        this.username = localStorage.getItem('username');
+    }
 
-    constructor() { }
-
-    login() {
-        console.log('Logged in successfully', this.isAuth)
-        this.isAuth = true;
+    isAuthenticated(): boolean {
+        return !!this.username;
     }
 
     logout() {
-        console.log('logout')
-        this.isAuth = false;
+        this.username = null;
+        localStorage.removeItem('username');
     }
 
-    isAuthenticated(): Boolean {
-        console.log('isAuth', this.isAuth)
-        return this.isAuth;
+    getUserInfo(): string {
+        return this.username;
     }
 
-    getUserInfo() {
-        console.log('getUserInfo')
+    login(username: string) {
+        this.username = username;
+        localStorage.setItem('username', username);
     }
 }
