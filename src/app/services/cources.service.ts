@@ -62,11 +62,11 @@ export class CourcesService {
     }
 
     getItemById(id: number): void {
-        console.log('getItemById')
+        console.log('getItemById');
     }
 
     updateItem(id: number): void {
-        console.log('updateItem')
+        console.log('updateItem');
     }
 
     removeItem(id: number): void {

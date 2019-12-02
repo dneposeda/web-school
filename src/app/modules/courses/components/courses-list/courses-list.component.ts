@@ -35,7 +35,7 @@ export class CoursesListComponent implements OnInit {
     }
 
     deleteCourse(id: any): void {
-        if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) return;
+        if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) { return; }
         this.courcesService.removeItem(id);
         this.courses = this.courcesService.getList();
         if (this.searchText) {
@@ -45,7 +45,7 @@ export class CoursesListComponent implements OnInit {
         }
     }
 
-    find(searchText: string){
+    find(searchText: string) {
         this.searchText = searchText;
         this.coursesList = this.filterBy.transform(this.courses, 'title', searchText);
     }

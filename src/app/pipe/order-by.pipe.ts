@@ -23,8 +23,8 @@ export class OrderByPipe implements PipeTransform {
         const prevItem: number = Date.parse(a[fieldName]);
         const nextItem: number = Date.parse(b[fieldName]);
 
-        if (prevItem > nextItem) return -1;
-        if (prevItem === nextItem) return 0;
-        if (prevItem < nextItem) return 1;
+        if (prevItem > nextItem) { return -1; }
+        if (prevItem === nextItem) { return 0; }
+        if (prevItem < nextItem) { return 1; }
     }
 }
