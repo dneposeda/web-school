@@ -1,28 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ICourse } from 'src/app/interfaces/icourse';
-import { FilterByPipe } from 'src/app/pipe/filter-by.pipe';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Injectable } from '@angular/core';
+import { ICourse } from '../interfaces/icourse';
 
-@Component({
-    selector: 'app-courses-list',
-    templateUrl: './courses-list.component.html',
-    styleUrls: ['./courses-list.component.css'],
-    providers: [
-        FilterByPipe,
-    ]
+@Injectable({
+    providedIn: 'root'
 })
-export class CoursesListComponent implements OnInit {
+export class CourcesService {
+    private courses: Array<ICourse>;
 
-    // Icons FontAwesome
-    faPlus = faPlus;
-
-    courses: Array<ICourse>;
-    coursesList: Array<ICourse>;
-
-
-    constructor( private filterBy: FilterByPipe) {}
-
-    ngOnInit() {
+    constructor() {
         this.courses = [
             {
                 id: 1,
@@ -70,20 +55,29 @@ export class CoursesListComponent implements OnInit {
                 topRated: true,
             }
         ];
-
-        this.coursesList = this.courses;
     }
 
-    loadMoreCourses(): void {
-        console.log('Load more course');
+    getList(): Array<ICourse> {
+        return this.courses;
     }
 
-    deleteCourse(id: any): void {
-        console.log(id);
+    getItemById(id: number): void {
+        console.log('getItemById');
     }
 
-    find(searchText: string){
-        this.coursesList = this.filterBy.transform(this.courses, 'title', searchText)
+    updateItem(id: number): void {
+        console.log('updateItem');
     }
 
+    removeItem(id: number): void {
+        const index = this.courses.findIndex(item => item.id === id);
+        if (index >= 0) {
+            this.courses = this.courses.slice(0);
+            this.courses.splice(index, 1);
+        }
+    }
+
+    createCourse(course): void {
+        console.log('createCourse');
+    }
 }

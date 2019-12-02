@@ -1,0 +1,18 @@
+<div class="user-info__wrapp" >
+    <ng-container *ngIf="authService.isAuthenticated()">
+        <span class="user-info user-login">
+            <fa-icon class="faIcon" [icon]="faUser"></fa-icon>
+            {{authService.getUserInfo()}}
+        </span>
+        <span class="user-info user-logout">
+            <fa-icon class="faIcon" [icon]="faSignOutAlt"></fa-icon>
+            <button type="button" (click)="logout()">Log off</button>
+        </span>
+    </ng-container>
+    <ng-container *ngIf="!authService.isAuthenticated()">
+        <span class="user-info user-logout">
+            <fa-icon class="faIcon" [icon]="faSignOutAlt"></fa-icon>
+            <button type="button" (click)="login()">Log in</button>
+        </span>
+    </ng-container>
+</div>

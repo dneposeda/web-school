@@ -12,7 +12,3 @@
     background-repeat: no-repeat;
     padding-left: 45px;
 }
-
-.input::placeholder {
-    color: #c0c3ce;
-}
