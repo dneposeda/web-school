@@ -24,7 +24,7 @@ export class CourseComponent implements OnInit {
     ngOnInit() {
     }
 
-    deleteCourse(): void {
+    deleteCourse(event: any): void {
         this.delete.emit(this.course.id);
     }
 

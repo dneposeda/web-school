@@ -30,7 +30,7 @@ export class CoursesListComponent implements OnInit {
         this.coursesList = this.courses;
     }
 
-    loadMoreCourses(): void {
+    loadMoreCourses(event: any): void {
         console.log('Load more course');
     }
 
