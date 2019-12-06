@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse } from 'src/app/interfaces/icourse';
-import { FilterByPipe } from 'src/app/pipe/filter-by.pipe';
+import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CourcesService } from 'src/app/services/cources.service';
 

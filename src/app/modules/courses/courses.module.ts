@@ -8,10 +8,8 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import { CourseComponent } from './components/course/course.component';
 import { SearchComponent } from './components/search/search.component';
 import { HighlightDirective } from 'src/app/directives/highlight.directive';
-import { DurationPipe } from 'src/app/pipe/duration.pipe';
-import { OrderByPipe } from 'src/app/pipe/order-by.pipe';
-import { FilterByPipe } from 'src/app/pipe/filter-by.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,15 +19,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         CoursesListComponent,
         PageComponent,
         HighlightDirective,
-        DurationPipe,
-        OrderByPipe,
-        FilterByPipe,
     ],
     imports: [
         FormsModule,
         CommonModule,
         CoursesRoutingModule,
         FontAwesomeModule,
+        SharedModule,
     ]
 })
 export class CoursesModule { }

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseComponent } from './course.component';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { DurationPipe } from 'src/app/pipe/duration.pipe';
+import { DurationPipe } from 'src/app/modules/shared/pipe/duration.pipe';
 
 describe('CourseComponent', () => {
     let component: CourseComponent;
