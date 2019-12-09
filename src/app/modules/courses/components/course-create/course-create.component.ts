@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-course-create',
@@ -13,7 +14,7 @@ export class CourseCreateComponent {
     date: string;
     authors: string;
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     save() {
         console.log('save');
@@ -21,6 +22,7 @@ export class CourseCreateComponent {
 
     cancel() {
         console.log('cancel');
+        this.router.navigate(['courses']);
     }
 
 }

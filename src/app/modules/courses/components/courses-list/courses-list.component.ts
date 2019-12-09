@@ -3,6 +3,7 @@ import { ICourse } from 'src/app/interfaces/icourse';
 import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CourcesService } from 'src/app/services/cources.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class CoursesListComponent implements OnInit {
 
     private searchText: string;
 
-    constructor( private filterBy: FilterByPipe, private courcesService: CourcesService) {}
+    constructor( private filterBy: FilterByPipe, private courcesService: CourcesService, private router: Router) {}
 
     ngOnInit() {
         this.courses = this.courcesService.getList();
@@ -48,6 +49,10 @@ export class CoursesListComponent implements OnInit {
     find(searchText: string) {
         this.searchText = searchText;
         this.coursesList = this.filterBy.transform(this.courses, 'title', searchText);
+    }
+
+    create() {
+        this.router.navigate(['/courses/new']);
     }
 
 }

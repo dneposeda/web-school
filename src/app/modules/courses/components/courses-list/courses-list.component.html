@@ -1,6 +1,6 @@
 <app-search (text)="find($event)"></app-search>
 <div class="action-block">
-    <button type="button" class="btn btn-primary">
+    <button type="button" class="btn btn-primary" (click)="create()">
         <fa-icon class="faIcon" [icon]="faPlus" size="lg"></fa-icon>
         Add course
     </button>

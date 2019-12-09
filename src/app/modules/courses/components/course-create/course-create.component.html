@@ -1,97 +1,104 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div class="course-create">
-            <div class="pg-element">
-                <h1 class="title">New course</h1>
-                <form action="">
-                    <div class="fr-field">
-                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
-                            <div class="fr-label-required">
-                                    <label for="title" class="fr-label">Title:</label>
-                                    <span class="fr-label-required_text">*required</span>
-                                </div>
-                                <input
-                                    type="text"
-                                    [(ngModel)]="title"
-                                    name="title"
-                                    id="title"
-                                    placeholder="Entry course title"
-                                    class="input"
-                                >
-                        </div>
-                    </div>
-                    <div class="fr-field">
-                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
-                            <div class="fr-label-required">
-                                <label for="description" class="fr-label">Description:</label>
-                                <span class="fr-label-required_text">*required</span>
+<main class="page">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="course-create">
+                            <div class="pg-element">
+                                <h1 class="title">New course</h1>
+                                <form action="">
+                                    <div class="fr-field">
+                                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
+                                            <div class="fr-label-required">
+                                                    <label for="title" class="fr-label">Title:</label>
+                                                    <span class="fr-label-required_text">*required</span>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    [(ngModel)]="title"
+                                                    name="title"
+                                                    id="title"
+                                                    placeholder="Entry course title"
+                                                    class="input"
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="fr-field">
+                                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
+                                            <div class="fr-label-required">
+                                                <label for="description" class="fr-label">Description:</label>
+                                                <span class="fr-label-required_text">*required</span>
+                                            </div>
+                                            <textarea
+                                                type=""
+                                                [(ngModel)]="description"
+                                                name="description"
+                                                id="description"
+                                                class="input"
+                                                placeholder="Entre description"
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="fr-field">
+                                        <div class="fr-field__wrapp">
+                                            <div class="fr-label-required">
+                                                <label for="duration" class="fr-label">Duration:</label>
+                                                <span class="fr-label-required_text">*required</span>
+                                            </div>
+                                            <input
+                                                type="number"
+                                                [(ngModel)]="duration"
+                                                name="duration"
+                                                id="duration"
+                                                placeholder="Entry duration"
+                                                class="input"
+                                            >
+                                        </div>
+                                        <span class="duration">{{ duration | duration }}</span>
+                                    </div>
+                                    <div class="fr-field">
+                                        <div class="fr-field__wrapp">
+                                            <div class="fr-label-required">
+                                                <label for="date" class="fr-label">Date:</label>
+                                                <span class="fr-label-required_text">*required</span>
+                                            </div>
+                                            <input
+                                                type="date"
+                                                [(ngModel)]="date"
+                                                name="date"
+                                                id="date"
+                                                placeholder="Entry date"
+                                                class="input"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="fr-field">
+                                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
+                                            <div class="fr-label-required">
+                                                <label for="authors" class="fr-label">Authors:</label>
+                                                <span class="fr-label-required_text">*required</span>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                [(ngModel)]="authors"
+                                                name="authors"
+                                                id="authors"
+                                                placeholder="Entry authors"
+                                                class="input"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="action-btns">
+                                        <button (click)="cancel()" class="btn btn-secondary" type="button">Cancel</button>
+                                        <button (click)="save()" class="btn btn-success" type="button">Save</button>
+                                    </div>
+                                </form>
                             </div>
-                            <textarea
-                                type=""
-                                [(ngModel)]="description"
-                                name="description"
-                                id="description"
-                                class="input"
-                                placeholder="Entre description"
-                            ></textarea>
                         </div>
                     </div>
-                    <div class="fr-field">
-                        <div class="fr-field__wrapp">
-                            <div class="fr-label-required">
-                                    <label for="duration" class="fr-label">Duration:</label>
-                                    <span class="fr-label-required_text">*required</span>
-                                </div>
-                                <input
-                                    type="number"
-                                    [(ngModel)]="duration"
-                                    name="duration"
-                                    id="duration"
-                                    placeholder="Entry duration"
-                                    class="input"
-                                >
-                        </div>
-                        <span class="duration">{{ duration | duration }}</span>
-                    </div>
-                    <div class="fr-field">
-                        <div class="fr-field__wrapp">
-                            <div class="fr-label-required">
-                                <label for="date" class="fr-label">Date:</label>
-                                <span class="fr-label-required_text">*required</span>
-                            </div>
-                            <input
-                                type="date"
-                                [(ngModel)]="date"
-                                name="date"
-                                id="date"
-                                placeholder="Entry date"
-                                class="input"
-                            >
-                        </div>
-                    </div>
-                    <div class="fr-field">
-                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
-                            <div class="fr-label-required">
-                                <label for="authors" class="fr-label">Authors:</label>
-                                <span class="fr-label-required_text">*required</span>
-                            </div>
-                            <input
-                                type="text"
-                                [(ngModel)]="authors"
-                                name="authors"
-                                id="authors"
-                                placeholder="Entry authors"
-                                class="input"
-                            >
-                        </div>
-                    </div>
-                    <div class="action-btns">
-                        <button (click)="cancel()" class="btn btn-secondary" type="button">Cancel</button>
-                        <button (click)="save()" class="btn btn-success" type="button">Save</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</main>

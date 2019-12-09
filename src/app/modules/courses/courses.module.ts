@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CoursesRoutingModule } from './courses-routing.module';
+// import { CoursesRoutingModule } from './courses-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { PageComponent } from './components/page/page.component';
@@ -26,7 +26,7 @@ import { HighlightDirective } from 'src/app/directives/highlight.directive';
     imports: [
         FormsModule,
         CommonModule,
-        CoursesRoutingModule,
+        // CoursesRoutingModule,
         FontAwesomeModule,
         SharedModule,
     ]
