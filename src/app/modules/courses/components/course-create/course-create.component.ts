@@ -7,21 +7,20 @@ import { Component } from '@angular/core';
 })
 export class CourseCreateComponent {
 
-    title;
-    description;
-    duration;
-    date;
-    authors;
-
+    title: string;
+    description: string;
+    duration: number;
+    date: string;
+    authors: string;
 
     constructor() { }
 
-    save(){
+    save() {
+        console.log('save');
+    }
 
-    };
-
-    cancel(){
-
-    };
+    cancel() {
+        console.log('cancel');
+    }
 
 }

@@ -132,3 +132,11 @@ input::placeholder, textarea::placeholder{
     font-size: 12px;
     color: #6c7283;
 }
+
+.fr-field__wrapp {
+    display: inline-block;
+}
+
+.fr-field__wrapp--full-width {
+    width: 100%;
+}

@@ -2,6 +2,14 @@
     width: 100%;
 }
 
+.course-create .input[name="duration"] {
+    width: auto;
+}
+
+.course-create .duration {
+    padding-left: 12px;
+}
+
 
 .course-create textarea {
     resize: vertical;
