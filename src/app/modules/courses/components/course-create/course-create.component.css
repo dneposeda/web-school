@@ -1,0 +1,19 @@
+.course-create .input {
+    width: 100%;
+}
+
+
+.course-create textarea {
+    resize: vertical;
+    min-height: 118px;
+    max-height: 197px;
+}
+
+.course-create .action-btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.course-create .btn-secondary {
+    margin-right: 12px;
+}
