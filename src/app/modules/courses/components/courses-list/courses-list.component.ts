@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ICourse } from 'src/app/interfaces/icourse';
 import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { CourcesService } from 'src/app/services/cources.service';
+import { CourcesService } from 'src/app/modules/courses/services/cources.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,16 +19,14 @@ export class CoursesListComponent implements OnInit {
     // Icons FontAwesome
     faPlus = faPlus;
 
-    courses: Array<ICourse>;
     coursesList: Array<ICourse>;
 
     private searchText: string;
 
-    constructor( private filterBy: FilterByPipe, private courcesService: CourcesService) {}
+    constructor( private filterBy: FilterByPipe, private courcesService: CourcesService, private router: Router) {}
 
     ngOnInit() {
-        this.courses = this.courcesService.getList();
-        this.coursesList = this.courses;
+        this.coursesList = this.courcesService.getList();
     }
 
     loadMoreCourses(event: any): void {
@@ -37,17 +36,23 @@ export class CoursesListComponent implements OnInit {
     deleteCourse(id: any): void {
         if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) { return; }
         this.courcesService.removeItem(id);
-        this.courses = this.courcesService.getList();
-        if (this.searchText) {
-            this.find(this.searchText);
-        } else {
-            this.coursesList = this.courses;
-        }
+        this.find(this.searchText);
+    }
+
+    edit(id: number) {
+        this.router.navigate(['/courses', id]);
     }
 
     find(searchText: string) {
         this.searchText = searchText;
-        this.coursesList = this.filterBy.transform(this.courses, 'title', searchText);
+        this.coursesList = this.courcesService.getList();
+        if (searchText) {
+            this.coursesList = this.filterBy.transform(this.coursesList, 'title', searchText);
+        }
+    }
+
+    create() {
+        this.router.navigate(['/courses/new']);
     }
 
 }
