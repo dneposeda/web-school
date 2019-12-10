@@ -4,15 +4,15 @@
             <fa-icon class="faIcon" [icon]="faUser"></fa-icon>
             {{authService.getUserInfo()}}
         </span>
-        <span class="user-info user-logout">
+        <span class="user-info user-logout" (click)="logout()">
             <fa-icon class="faIcon" [icon]="faSignOutAlt"></fa-icon>
-            <button type="button" (click)="logout()">Log off</button>
+            <span type="button">Log off</span>
         </span>
     </ng-container>
     <ng-container *ngIf="!authService.isAuthenticated()">
-        <span class="user-info user-logout">
+        <span class="user-info user-logout" (click)="login()">
             <fa-icon class="faIcon" [icon]="faSignOutAlt"></fa-icon>
-            <button type="button" (click)="login()">Log in</button>
+            <span type="button">Log in</span>
         </span>
     </ng-container>
 </div>

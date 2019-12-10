@@ -4,7 +4,9 @@
 }
 
 .user-info {
-    margin-right: 25px;
+    cursor: pointer;
+    margin-right: 15px;
+    padding: 8px 10px;
 }
 
 .user-info:last-child {

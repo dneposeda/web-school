@@ -17,7 +17,7 @@ export class HighlightDirective implements OnInit {
 
     ngOnInit() {
         this.creationDate = Date.parse(this.creationDate);
-        this.fresh = this.creationDate < this.currentDate
+        this.fresh = this.creationDate <= this.currentDate
                     && this.creationDate >= (this.currentDate - this.DAY * 14);
         this.upcoming = this.creationDate > this.currentDate;
 

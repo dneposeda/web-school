@@ -5,8 +5,8 @@ import { SearchComponent } from '../search/search.component';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { CourseComponent } from '../course/course.component';
 import { FormsModule } from '@angular/forms';
-import { DurationPipe } from 'src/app/pipe/duration.pipe';
-import { OrderByPipe } from 'src/app/pipe/order-by.pipe';
+import { DurationPipe } from 'src/app/modules/shared/pipe/duration.pipe';
+import { OrderByPipe } from 'src/app/modules/shared/pipe/order-by.pipe';
 
 describe('CoursesListComponent', () => {
     let component: CoursesListComponent;
