@@ -7,7 +7,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-
+import { DateComponent } from './components/inputs/date/date.component';
+import { DurationFieldComponent } from './components/inputs/duration-field/duration-field.component';
+import { FormsModule } from '@angular/forms';
+import { DurationPipe } from 'src/app/modules/shared/pipe/duration.pipe';
+import { OrderByPipe } from 'src/app/modules/shared/pipe/order-by.pipe';
+import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 
 
 @NgModule({
@@ -18,10 +23,17 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
         UserInfoComponent,
         LogoComponent,
         BreadcrumbsComponent,
+        DateComponent,
+        DurationFieldComponent,
+        DurationPipe,
+        OrderByPipe,
+        FilterByPipe,
+
     ],
     imports: [
         CommonModule,
         FontAwesomeModule,
+        FormsModule,
     ],
     exports: [
         NotFoundComponent,
@@ -29,6 +41,9 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
         HeaderComponent,
         UserInfoComponent,
         BreadcrumbsComponent,
+        DurationPipe,
+        OrderByPipe,
+        FilterByPipe,
     ]
 })
 export class SharedModule { }

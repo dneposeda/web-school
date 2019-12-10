@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICourse } from '../interfaces/icourse';
+import { ICourse } from '../../../interfaces/icourse';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,7 @@ export class CourcesService {
             {
                 id: 1,
                 title: 'Video Course 1. JavaScript',
-                creationDate: '30 Oct 2019',
+                creationDate: '06 Dec 2019',
                 duration: 88,
                 description:
                     `Learn about where you can find course descriptions, what information they include, how they work,
@@ -23,7 +23,7 @@ export class CourcesService {
             }, {
                 id: 2,
                 title: 'Video Course 2. Java tag',
-                creationDate: '11/12/2019',
+                creationDate: '12/30/2019',
                 duration: 61,
                 description:
                     `Learn about where you can find course descriptions, what information they include, how they work,
@@ -61,8 +61,8 @@ export class CourcesService {
         return this.courses;
     }
 
-    getItemById(id: number): void {
-        console.log('getItemById');
+    getItemById(id: number): ICourse {
+        return this.courses.find(course => course.id === id);
     }
 
     updateItem(id: number): void {

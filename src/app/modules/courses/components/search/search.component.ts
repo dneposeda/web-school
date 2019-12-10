@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
     }
 
-    find(): void {
+    find(event: any): void {
         this.text.emit(this.searchText);
     }
 
