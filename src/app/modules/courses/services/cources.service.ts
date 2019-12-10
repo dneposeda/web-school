@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICourse } from '../interfaces/icourse';
+import { ICourse } from '../../../interfaces/icourse';
 
 @Injectable({
     providedIn: 'root'
@@ -61,8 +61,8 @@ export class CourcesService {
         return this.courses;
     }
 
-    getItemById(id: number): void {
-        console.log('getItemById');
+    getItemById(id: number): ICourse {
+        return this.courses.find(course => course.id === id);
     }
 
     updateItem(id: number): void {

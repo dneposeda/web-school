@@ -15,10 +15,10 @@ import { SharedModule } from './modules/shared/shared.module';
     imports: [
         BrowserModule,
         FormsModule,
-        AppRoutingModule,
         AuthModule,
         CoursesModule,
         SharedModule,
+        AppRoutingModule, //Рутовый роутинг после всех модулей
     ],
     providers: [],
     bootstrap: [AppComponent]

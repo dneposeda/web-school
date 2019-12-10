@@ -1,27 +1,44 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ICourse} from '../../../../interfaces/icourse';
+import {CourcesService} from '../../services/cources.service';
 
 @Component({
     selector: 'app-course-create',
     templateUrl: './course-create.component.html',
     styleUrls: ['./course-create.component.css']
 })
-export class CourseCreateComponent {
+export class CourseCreateComponent implements OnInit {
+    id: number;
+    model: ICourse;
 
-    title: string;
-    description: string;
-    duration: number;
-    date: string;
-    authors: string;
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private service: CourcesService
+    ) { }
 
-    constructor(private router: Router) { }
+    ngOnInit(): void {
+        this.id = +this.route.snapshot.paramMap.get('id');
+        this.model = {
+            id: null,
+            title: '',
+            creationDate: '',
+            duration: 0,
+            description: '',
+            topRated: false,
+            authors: null,
+        };
+        if (this.id) {
+            this.model = Object.assign(this.model, this.service.getItemById(this.id))
+        }
+    }
 
     save() {
         console.log('save');
     }
 
     cancel() {
-        console.log('cancel');
         this.router.navigate(['courses']);
     }
 
