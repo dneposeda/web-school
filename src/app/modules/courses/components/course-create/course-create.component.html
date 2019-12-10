@@ -6,7 +6,7 @@
                     <div class="col-8">
                         <div class="course-create">
                             <div class="pg-element">
-                                <h1 class="title">New course</h1>
+                                <h1 class="title">{{id ? 'Edit course' : 'New course'}}</h1>
                                 <form action="">
                                     <div class="fr-field">
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
@@ -16,7 +16,7 @@
                                                 </div>
                                                 <input
                                                     type="text"
-                                                    [(ngModel)]="title"
+                                                    [(ngModel)]="model.title"
                                                     name="title"
                                                     id="title"
                                                     placeholder="Entry course title"
@@ -32,7 +32,7 @@
                                             </div>
                                             <textarea
                                                 type=""
-                                                [(ngModel)]="description"
+                                                [(ngModel)]="model.description"
                                                 name="description"
                                                 id="description"
                                                 class="input"
@@ -48,14 +48,14 @@
                                             </div>
                                             <input
                                                 type="number"
-                                                [(ngModel)]="duration"
+                                                [(ngModel)]="model.duration"
                                                 name="duration"
                                                 id="duration"
                                                 placeholder="Entry duration"
                                                 class="input"
                                             >
                                         </div>
-                                        <span class="duration">{{ duration | duration }}</span>
+                                        <span class="duration">{{ model.duration | duration }}</span>
                                     </div>
                                     <div class="fr-field">
                                         <div class="fr-field__wrapp">
@@ -65,7 +65,7 @@
                                             </div>
                                             <input
                                                 type="date"
-                                                [(ngModel)]="date"
+                                                [(ngModel)]="model.creationDate"
                                                 name="date"
                                                 id="date"
                                                 placeholder="Entry date"
@@ -81,7 +81,7 @@
                                             </div>
                                             <input
                                                 type="text"
-                                                [(ngModel)]="authors"
+                                                [(ngModel)]="model.authors"
                                                 name="authors"
                                                 id="authors"
                                                 placeholder="Entry authors"
