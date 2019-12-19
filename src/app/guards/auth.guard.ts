@@ -8,14 +8,14 @@ import {AuthService} from '../modules/auth/services/auth.service';
 export class AuthGuard implements CanActivate {
 
     constructor(private router: Router,
-                private appData: AuthService) { }
+                private authService: AuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.appData.isAuthenticated()) {
+        if (this.authService.isAuthenticated()) {
             return true;
         }
 
-        this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
-        return false;
+        const homePageUrlTree = this.router.parseUrl('/login');
+        return this.authService.isAuthenticated() ? true : homePageUrlTree;
     }
 }
