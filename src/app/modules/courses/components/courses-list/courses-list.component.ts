@@ -4,6 +4,7 @@ import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CourcesService } from 'src/app/modules/courses/services/cources.service';
 import { Router } from '@angular/router';
+import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class CoursesListComponent implements OnInit {
 
     // Icons FontAwesome
     faPlus = faPlus;
+    breadcrumbItems: IBreadcrumb[];
 
     coursesList: Array<ICourse>;
 
@@ -27,6 +29,9 @@ export class CoursesListComponent implements OnInit {
 
     ngOnInit() {
         this.coursesList = this.courcesService.getList();
+        this.breadcrumbItems = [
+            {title: 'Courses'}
+        ];
     }
 
     loadMoreCourses(event: any): void {

@@ -1,9 +1,9 @@
 <div class="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <span class="breadcrumbs__text">Courses</span>
-            </div>
-        </div>
-    </div>
+
+    <span *ngFor="let item of items; let lastItem = last" class="breadcrumbs__text">
+        <span *ngIf="!lastItem">
+            <a  [routerLink]="item.routeLink">{{ item.title }}</a> /
+        </span>
+        <span *ngIf="lastItem">{{ item.title }}</span>
+    </span>
 </div>
