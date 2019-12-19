@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { DurationPipe } from 'src/app/modules/shared/pipe/duration.pipe';
 import { OrderByPipe } from 'src/app/modules/shared/pipe/order-by.pipe';
 import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
         CommonModule,
         FontAwesomeModule,
         FormsModule,
+        RouterModule,
     ],
     exports: [
         NotFoundComponent,

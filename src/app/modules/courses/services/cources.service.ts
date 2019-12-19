@@ -65,8 +65,8 @@ export class CourcesService {
         return this.courses.find(course => course.id === id);
     }
 
-    updateItem(id: number): void {
-        console.log('updateItem');
+    updateItem(item: ICourse): void {
+        console.log('updateItem', item);
     }
 
     removeItem(id: number): void {
@@ -77,7 +77,7 @@ export class CourcesService {
         }
     }
 
-    createCourse(course): void {
-        console.log('createCourse');
+    createCourse(item: ICourse): void {
+        console.log('createCourse', item);
     }
 }

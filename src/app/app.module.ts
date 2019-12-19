@@ -18,7 +18,7 @@ import { SharedModule } from './modules/shared/shared.module';
         AuthModule,
         CoursesModule,
         SharedModule,
-        AppRoutingModule, //Рутовый роутинг после всех модулей
+        AppRoutingModule, // Рутовый роутинг после всех модулей
     ],
     providers: [],
     bootstrap: [AppComponent]
