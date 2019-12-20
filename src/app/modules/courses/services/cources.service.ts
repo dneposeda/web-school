@@ -9,42 +9,37 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class CourcesService {
     private baseUrl = 'http://localhost:4280/courses';
-    private courses: Array<ICourse>;
 
-    constructor(private http: HttpClient) {
-        this.courses = [];
-    }
+    constructor(private http: HttpClient) { }
 
-    getList(): Observable<ICourse[]> {
-        return this.http.get<ICourse>(this.baseUrl)
+    getList(count): Observable<ICourse[]> {
+        return this.http.get<ICourse>(`${this.baseUrl}?_start=0&_limit=${count}`)
             .pipe(
-                tap(data => console.log('Get All Courses', data)),
                 catchError(this.handleError)
             );
     }
 
-    getItemById(id: number): Observable<any> {
+    getCourseById(id: number): Observable<any> {
         return this.http.get(`${this.baseUrl}/${id}`);
     }
 
-    updateItem(item: ICourse): void {
-        console.log('updateItem', item);
+    updateCourse(item: ICourse): Observable<any> {
+        return this.http.put(`${this.baseUrl}/${item.id}`, item);
     }
 
-    removeItem(id: number): void {
-        const index = this.courses.findIndex(item => item.id === id);
-        if (index >= 0) {
-            this.courses = this.courses.slice(0);
-            this.courses.splice(index, 1);
-        }
+    removeCourse(id: number): Observable<any> {
+        return this.http.delete(`${this.baseUrl}/${id}`);
     }
 
-    createCourse(item: ICourse): void {
-        console.log('createCourse', item);
+    createCourse(item: ICourse): Observable<ICourse> {
+        return this.http.post<ICourse>(this.baseUrl, item);
+    }
+
+    findCourses(query: string): Observable<ICourse[]> {
+        return this.http.get<ICourse[]>(`${this.baseUrl}?q=${query}`);
     }
 
     private handleError(error: any): Observable<any> {
-        console.log(error);
         return throwError(error);
     }
 }

@@ -8,6 +8,8 @@ import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
+import { httpInterceptorProviders } from './core/interceptors';
+
 
 @NgModule({
     declarations: [
@@ -22,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
         SharedModule,
         AppRoutingModule, // Рутовый роутинг после всех модулей
     ],
-    providers: [],
+    providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

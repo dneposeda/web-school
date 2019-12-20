@@ -17,7 +17,7 @@ export class CourseCreateComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private service: CourcesService
+        private courcesService: CourcesService
     ) { }
 
     ngOnInit(): void {
@@ -35,7 +35,7 @@ export class CourseCreateComponent implements OnInit {
             {title: 'Courses', routeLink: '/courses'},
         ];
         if (this.id) {
-            this.model = Object.assign(this.model, this.service.getItemById(this.id));
+            this.model = Object.assign(this.model, this.getCourseById(this.id));
             this.breadcrumbItems.push({title: this.model.title});
         } else {
             this.breadcrumbItems.push({title: 'New course'});
@@ -43,12 +43,28 @@ export class CourseCreateComponent implements OnInit {
     }
 
     save() {
-        this.id ? this.service.createCourse(this.model) : this.service.updateItem(this.model);
-        this.router.navigate(['courses']);
+        this.id ? this.updateCourse(this.model) : this.createCourse(this.model);
     }
 
     cancel() {
         this.router.navigate(['courses']);
     }
 
+    private getCourseById(id: number) {
+        this.courcesService.getCourseById(id).subscribe((res) => {
+            Object.assign(this.model, res);
+        });
+    }
+
+    private createCourse(item: ICourse) {
+        this.courcesService.createCourse(item).subscribe(() => {
+            this.router.navigate(['courses']);
+        });
+    }
+
+    private updateCourse(item: ICourse) {
+        this.courcesService.updateCourse(item).subscribe(() => {
+            this.router.navigate(['courses']);
+        });
+    }
 }

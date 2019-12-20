@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../../auth/services/auth.service';
 import {Router} from '@angular/router';
@@ -8,13 +8,19 @@ import {Router} from '@angular/router';
     templateUrl: './user-info.component.html',
     styleUrls: ['./user-info.component.css']
 })
-export class UserInfoComponent {
-
+export class UserInfoComponent implements OnInit {
+    public userName: string;
     // Icons FontAwesome
     faUser = faUser;
     faSignOutAlt = faSignOutAlt;
 
     constructor(public authService: AuthService, private router: Router) { }
+
+    ngOnInit() {
+        this.authService.getUserInfo().subscribe((user) => {
+            this.userName = user.email;
+        });
+    }
 
     logout() {
         this.authService.logout();

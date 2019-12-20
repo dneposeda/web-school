@@ -2,12 +2,20 @@
 Angular Global Mentoring Program [2019Q3]
 ### Built With
  - **[Angular 8](https://nodejs.org/)** - The web framework used
- - **[json-server](https://jsonplaceholder.typicode.com/)** - Back-end full fake REST API
+ - **[JSON Server](https://github.com/typicode/json-server)** - Back-end full fake REST API
+ - **[Authentication middleware for JSON Server](https://github.com/jeremyben/json-server-auth)** - Authentication & Authorization flow for JSON Server
+
 ### Development server
 Run fake REST API back-end [`http://localhost:4280/`](http://localhost:4280/))
  ```sh
-$ npm server
+$ npm run server
 ```
+Test user
+ ```
+email: mail@mail.ru
+password: 123456
+```
+
 Run front-end
  ```sh
 $ npm start

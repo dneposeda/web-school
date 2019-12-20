@@ -1,30 +1,51 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private username: string;
+    private baseUrl = 'http://localhost:4280';
+    private token: string;
 
-    constructor() {
-        this.username = localStorage.getItem('username');
+    constructor(private http: HttpClient) {
+        this.token = localStorage.getItem('accessToken');
     }
 
     isAuthenticated(): boolean {
-        return !!this.username;
+        return !!this.token;
     }
 
     logout() {
-        this.username = null;
-        localStorage.removeItem('username');
+        this.token = null;
+        localStorage.removeItem('accessToken');
     }
 
-    getUserInfo(): string {
-        return this.username;
+    getUserInfo(): Observable<any> {
+        if (!this.token) {
+            return of(null);
+        }
+
+        return this.http.get(`${this.baseUrl}/users/1`).pipe();
     }
 
-    login(username: string) {
-        this.username = username;
-        localStorage.setItem('username', username);
+    getToken(): string {
+        return this.token;
+    }
+
+    login(user: any): Observable<any> {
+        return this.http.post(`${this.baseUrl}/login`, user).pipe(
+            tap((data: any) => {
+                this.token = data.accessToken;
+                localStorage.setItem('accessToken', this.token);
+            }),
+            catchError(this.handleError)
+        );
+    }
+
+    private handleError(error: any): Observable<any> {
+        return throwError(error);
     }
 }

@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<div *ngIf="coursesList.length">
+<div *ngIf="coursesList?.length">
     <div *ngFor="let course of coursesList | orderBy:'creationDate'">
         <app-course [course]="course" (delete)="deleteCourse($event)" (edit)="edit($event)"></app-course>
     </div>
@@ -15,13 +15,13 @@
     <div class="container course course--load-more">
         <div class="row">
             <div class="col">
-                <p><button type="button" class="btn--non-style" (click)="loadMoreCourses($event)">Load More</button></p>
+                <p><button type="button" class="btn--non-style" (click)="loadMoreCourses()">Load More</button></p>
             </div>
         </div>
     </div>
 </div>
 
-<div *ngIf="!coursesList.length">
+<div *ngIf="!coursesList?.length">
     <div class="container course course--no-data">
         <div class="row">
             <div class="col">
