@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CourcesService } from 'src/app/modules/courses/services/cources.service';
 import { Router } from '@angular/router';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -21,14 +22,14 @@ export class CoursesListComponent implements OnInit {
     faPlus = faPlus;
     breadcrumbItems: IBreadcrumb[];
 
-    coursesList: Array<ICourse>;
+    coursesList$: Observable<ICourse[]>;
 
     private searchText: string;
 
     constructor( private filterBy: FilterByPipe, private courcesService: CourcesService, private router: Router) {}
 
     ngOnInit() {
-        this.coursesList = this.courcesService.getList();
+        this.coursesList$ = this.courcesService.getList();
         this.breadcrumbItems = [
             {title: 'Courses'}
         ];
@@ -41,20 +42,20 @@ export class CoursesListComponent implements OnInit {
     deleteCourse(id: any): void {
         if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) { return; }
         this.courcesService.removeItem(id);
-        this.find(this.searchText);
+        // this.find(this.searchText);
     }
 
     edit(id: number) {
         this.router.navigate(['/courses', id]);
     }
 
-    find(searchText: string) {
-        this.searchText = searchText;
-        this.coursesList = this.courcesService.getList();
-        if (searchText) {
-            this.coursesList = this.filterBy.transform(this.coursesList, 'title', searchText);
-        }
-    }
+    // find(searchText: string) {
+    //     this.searchText = searchText;
+    //     this.coursesList = this.courcesService.getList();
+    //     if (searchText) {
+    //         this.coursesList = this.filterBy.transform(this.coursesList, 'title', searchText);
+    //     }
+    // }
 
     create() {
         this.router.navigate(['/courses/new']);

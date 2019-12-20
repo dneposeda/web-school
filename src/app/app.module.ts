@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SharedModule } from './modules/shared/shared.module';
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         AuthModule,
         CoursesModule,
         SharedModule,
