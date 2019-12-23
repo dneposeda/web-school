@@ -28,7 +28,7 @@ export class AuthService {
             return of(null);
         }
 
-        return this.http.get(`${this.baseUrl}/users/1`).pipe();
+        return this.http.get(`${this.baseUrl}/users/1`);
     }
 
     getToken(): string {
