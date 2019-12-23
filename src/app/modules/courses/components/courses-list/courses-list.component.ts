@@ -20,40 +20,41 @@ export class CoursesListComponent implements OnInit {
     // Icons FontAwesome
     faPlus = faPlus;
     breadcrumbItems: IBreadcrumb[];
+    coursesList: ICourse[];
 
-    coursesList: Array<ICourse>;
-
+    private count = 4;
     private searchText: string;
 
     constructor( private filterBy: FilterByPipe, private courcesService: CourcesService, private router: Router) {}
 
     ngOnInit() {
-        this.coursesList = this.courcesService.getList();
+        this.getCourses();
         this.breadcrumbItems = [
             {title: 'Courses'}
         ];
     }
 
-    loadMoreCourses(event: any): void {
-        console.log('Load more course');
+    loadMoreCourses(): void {
+        this.count += 4;
+        this.getCourses();
     }
 
-    deleteCourse(id: any): void {
+    getCourses() {
+        this.courcesService
+            .getList(this.count, this.searchText)
+            .subscribe((res) => { this.coursesList = res; });
+    }
+
+    deleteCourse(id: number): void {
         if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) { return; }
-        this.courcesService.removeItem(id);
-        this.find(this.searchText);
-    }
-
-    edit(id: number) {
-        this.router.navigate(['/courses', id]);
+        this.courcesService.removeCourse(id).subscribe(() => {
+            this.getCourses();
+        });
     }
 
     find(searchText: string) {
         this.searchText = searchText;
-        this.coursesList = this.courcesService.getList();
-        if (searchText) {
-            this.coursesList = this.filterBy.transform(this.coursesList, 'title', searchText);
-        }
+        this.getCourses();
     }
 
     create() {
