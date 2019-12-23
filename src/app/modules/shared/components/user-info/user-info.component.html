@@ -2,7 +2,7 @@
     <ng-container *ngIf="authService.isAuthenticated()">
         <span class="user-info user-login">
             <fa-icon class="faIcon" [icon]="faUser"></fa-icon>
-            {{authService.getUserInfo()}}
+            {{ userName | async }}
         </span>
         <span class="user-info user-logout" (click)="logout()">
             <fa-icon class="faIcon" [icon]="faSignOutAlt"></fa-icon>

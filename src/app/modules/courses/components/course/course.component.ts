@@ -29,9 +29,4 @@ export class CourseComponent implements OnInit {
     deleteCourse(event: any): void {
         this.delete.emit(this.course.id);
     }
-
-    editCourse(event: any): void {
-        this.edit.emit(this.course.id);
-    }
-
 }
