@@ -9,7 +9,7 @@
 
 <div *ngIf="coursesList?.length">
     <div *ngFor="let course of coursesList | orderBy:'creationDate'">
-        <app-course [course]="course" (delete)="deleteCourse($event)" (edit)="edit($event)"></app-course>
+        <app-course [course]="course" (delete)="deleteCourse($event)"></app-course>
     </div>
 
     <div class="container course course--load-more">

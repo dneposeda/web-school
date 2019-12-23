@@ -12,10 +12,18 @@ export class CourcesService {
 
     constructor(private http: HttpClient) { }
 
-    getList(count): Observable<ICourse[]> {
-        return this.http.get<ICourse>(`${this.baseUrl}?_start=0&_limit=${count}`)
+    getList(count: number, searchText?: string): Observable<ICourse[]> {
+        const params: {[name: string]: string} = {
+            _start: '0',
+            _limit: count + '',
+        };
+        if (searchText) {
+            params.q = searchText;
+        }
+
+        return this.http.get<ICourse>(`${this.baseUrl}`, {params})
             .pipe(
-                catchError(this.handleError)
+                catchError(this.handleError) //В этом нет смысла. С таким handleError() - это повторение дефолтного поведения
             );
     }
 
@@ -33,10 +41,6 @@ export class CourcesService {
 
     createCourse(item: ICourse): Observable<ICourse> {
         return this.http.post<ICourse>(this.baseUrl, item);
-    }
-
-    findCourses(query: string): Observable<ICourse[]> {
-        return this.http.get<ICourse[]>(`${this.baseUrl}?q=${query}`);
     }
 
     private handleError(error: any): Observable<any> {

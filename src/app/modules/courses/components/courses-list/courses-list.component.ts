@@ -23,11 +23,12 @@ export class CoursesListComponent implements OnInit {
     coursesList: ICourse[];
 
     private count = 4;
+    private searchText: string;
 
     constructor( private filterBy: FilterByPipe, private courcesService: CourcesService, private router: Router) {}
 
     ngOnInit() {
-        this.getCourses(this.count);
+        this.getCourses();
         this.breadcrumbItems = [
             {title: 'Courses'}
         ];
@@ -35,28 +36,25 @@ export class CoursesListComponent implements OnInit {
 
     loadMoreCourses(): void {
         this.count += 4;
-        this.getCourses(this.count);
+        this.getCourses();
     }
 
-    getCourses(count: number) {
-        this.courcesService.getList(count).subscribe((res) => { this.coursesList = res; });
+    getCourses() {
+        this.courcesService
+            .getList(this.count, this.searchText)
+            .subscribe((res) => { this.coursesList = res; });
     }
 
     deleteCourse(id: number): void {
         if (!confirm(`Are you sure you want to delete?\nId course - ${id}`)) { return; }
         this.courcesService.removeCourse(id).subscribe(() => {
-            this.coursesList = this.coursesList.filter( item => item.id !== id );
+            this.getCourses();
         });
-    }
-
-    edit(id: number) {
-        this.router.navigate(['/courses', id]);
     }
 
     find(searchText: string) {
-        this.courcesService.findCourses(searchText).subscribe((res) => {
-            this.coursesList = res;
-        });
+        this.searchText = searchText;
+        this.getCourses();
     }
 
     create() {

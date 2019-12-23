@@ -35,8 +35,8 @@ export class CourseCreateComponent implements OnInit {
             {title: 'Courses', routeLink: '/courses'},
         ];
         if (this.id) {
-            this.model = Object.assign(this.model, this.getCourseById(this.id));
-            this.breadcrumbItems.push({title: this.model.title});
+            this.breadcrumbItems.push({title: 'Edit'});
+            this.getCourseById(this.id);
         } else {
             this.breadcrumbItems.push({title: 'New course'});
         }
@@ -52,7 +52,7 @@ export class CourseCreateComponent implements OnInit {
 
     private getCourseById(id: number) {
         this.courcesService.getCourseById(id).subscribe((res) => {
-            Object.assign(this.model, res);
+            this.model = res;
         });
     }
 

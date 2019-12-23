@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../../auth/services/auth.service';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-user-info',
@@ -9,7 +11,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-    public userName: string;
+    public userName: Observable<string>;
     // Icons FontAwesome
     faUser = faUser;
     faSignOutAlt = faSignOutAlt;
@@ -17,9 +19,11 @@ export class UserInfoComponent implements OnInit {
     constructor(public authService: AuthService, private router: Router) { }
 
     ngOnInit() {
-        this.authService.getUserInfo().subscribe((user) => {
-            this.userName = user.email;
-        });
+        this.userName = this.authService
+            .getUserInfo()
+            .pipe(
+                map(user => user ? user.firstName + ' ' + user.lastName : '')
+            );
     }
 
     logout() {
