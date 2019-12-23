@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+
+import { httpInterceptorProviders } from './core/interceptors';
 
 
 @NgModule({
@@ -15,12 +18,13 @@ import { SharedModule } from './modules/shared/shared.module';
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         AuthModule,
         CoursesModule,
         SharedModule,
         AppRoutingModule, // Рутовый роутинг после всех модулей
     ],
-    providers: [],
+    providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

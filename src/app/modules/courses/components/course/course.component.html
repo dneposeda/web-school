@@ -28,10 +28,10 @@
         </div>
         <div class="col-3 align-self-center">
             <div class="action-btns">
-                <button (click)="editCourse($event)" type="button" class="btn btn-primary btn-sm">
+                <a [routerLink]="['/courses', course.id]" class="btn btn-primary btn-sm">
                     <fa-icon class="faIcon" [icon]="faPen" size="sm"></fa-icon>
                     Edit
-                </button>
+                </a>
                 <button (click)="deleteCourse($event)" type="button" class="btn btn-primary btn-sm">
                     <fa-icon class="faIcon" [icon]="faTrash" size="sm"></fa-icon>
                     Delete
