@@ -1,10 +1,9 @@
 <div class="search">
     <input
         [(ngModel)]="searchText"
+        (keyup)="find()"
         type="text"
         placeholder="Text to search"
         class="input input-lg"
     >
-
-    <button type="button" (click)="find($event)" class="btn btn-success btn-lg">Search</button>
 </div>

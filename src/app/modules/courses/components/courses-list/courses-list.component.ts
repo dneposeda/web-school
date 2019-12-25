@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CourcesService } from 'src/app/modules/courses/services/cources.service';
 import { Router } from '@angular/router';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
+import { LoadingService } from 'src/app/modules/shared/services/loading.service';
 
 
 @Component({
@@ -25,7 +26,12 @@ export class CoursesListComponent implements OnInit {
     private count = 4;
     private searchText: string;
 
-    constructor( private filterBy: FilterByPipe, private courcesService: CourcesService, private router: Router) {}
+    constructor(
+        private filterBy: FilterByPipe,
+        private courcesService: CourcesService,
+        private router: Router,
+        private loadingService: LoadingService,
+    ) {}
 
     ngOnInit() {
         this.getCourses();
@@ -42,7 +48,10 @@ export class CoursesListComponent implements OnInit {
     getCourses() {
         this.courcesService
             .getList(this.count, this.searchText)
-            .subscribe((res) => { this.coursesList = res; });
+            .subscribe((res) => {
+                this.coursesList = res;
+                this.loadingService.hideLoading();
+            });
     }
 
     deleteCourse(id: number): void {
