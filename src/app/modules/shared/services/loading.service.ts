@@ -6,19 +6,19 @@ import { Subject, Observable } from 'rxjs';
 })
 export class LoadingService {
     public loading$ = new Subject<boolean>();
-    private count = 0;
+    private count = 0; // for test
 
     constructor() { }
 
     public showLoading(): void {
-        console.log('+', this.count);
-        this.count++;
+        console.log('+', this.count); // for test
+        this.count++; // for test
         this.loading$.next(true);
     }
 
     public hideLoading(): void {
-        console.log('-', this.count);
-        this.count--;
+        console.log('-', this.count); // for test
+        this.count--; // for test
         this.loading$.next(false);
     }
 }
