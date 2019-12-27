@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import {IUser} from '../../../interfaces/iuser';
 
 @Injectable({
     providedIn: 'root'
@@ -23,12 +24,12 @@ export class AuthService {
         localStorage.removeItem('accessToken');
     }
 
-    getUserInfo(): Observable<any> {
+    getUserInfo(): Observable<IUser> {
         if (!this.token) {
             return of(null);
         }
 
-        return this.http.get(`${this.baseUrl}/users/1`);
+        return this.http.get<IUser>(`${this.baseUrl}/users/1`);
     }
 
     getToken(): string {
