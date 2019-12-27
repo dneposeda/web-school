@@ -20,15 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.search$.pipe(
             debounceTime(1000),
-            filter((query) => {
-                if (query === '') {
-                    return true;
-                } else if (query.length >= 3) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }),
+            filter((query) => query.length >= 3 || query === ''),
             distinctUntilChanged(),
             untilDestroyed(this),
         ).subscribe(
