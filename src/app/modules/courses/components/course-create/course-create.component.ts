@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ICourse} from '../../../../interfaces/icourse';
 import {CourcesService} from '../../services/cources.service';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
+import { LoadingService } from 'src/app/modules/shared/services/loading.service';
 
 @Component({
     selector: 'app-course-create',
@@ -17,7 +18,8 @@ export class CourseCreateComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private courcesService: CourcesService
+        private courcesService: CourcesService,
+        private loadingService: LoadingService,
     ) { }
 
     ngOnInit(): void {
@@ -53,17 +55,20 @@ export class CourseCreateComponent implements OnInit {
     private getCourseById(id: number) {
         this.courcesService.getCourseById(id).subscribe((res) => {
             this.model = res;
+            this.loadingService.hideLoading();
         });
     }
 
     private createCourse(item: ICourse) {
         this.courcesService.createCourse(item).subscribe(() => {
+            this.loadingService.hideLoading();
             this.router.navigate(['courses']);
         });
     }
 
     private updateCourse(item: ICourse) {
         this.courcesService.updateCourse(item).subscribe(() => {
+            this.loadingService.hideLoading();
             this.router.navigate(['courses']);
         });
     }

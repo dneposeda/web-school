@@ -14,6 +14,8 @@ import { DurationPipe } from 'src/app/modules/shared/pipe/duration.pipe';
 import { OrderByPipe } from 'src/app/modules/shared/pipe/order-by.pipe';
 import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './components/loading/loading.component';
+import {UserNameComponent} from './components/user-info/user-name.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { RouterModule } from '@angular/router';
         DurationPipe,
         OrderByPipe,
         FilterByPipe,
-
+        LoadingComponent,
+        UserNameComponent,
     ],
     imports: [
         CommonModule,
@@ -46,6 +49,8 @@ import { RouterModule } from '@angular/router';
         DurationPipe,
         OrderByPipe,
         FilterByPipe,
+        LoadingComponent,
+        UserNameComponent,
     ]
 })
 export class SharedModule { }
