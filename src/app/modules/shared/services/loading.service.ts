@@ -13,7 +13,7 @@ export class LoadingService {
     public showLoading(): void {
         console.log('+', this.count); // for test
         this.count++; // for test
-        this.loading$.next(true);
+        this.loading$.next(false); // временно убрал появления спинера
     }
 
     public hideLoading(): void {

@@ -24,9 +24,9 @@ export class CourcesService {
             params.q = searchText;
         }
 
-        return this.http.get<ICourse>(`${this.baseUrl}`, {params})
+        return this.http.get<ICourse[]>(this.baseUrl, {params})
             .pipe(
-                catchError(this.handleError) // В этом нет смысла. С таким handleError() - это повторение дефолтного поведения
+                catchError(this.handleError)
             );
     }
 

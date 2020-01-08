@@ -1,29 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ICourse} from '../../../../interfaces/icourse';
-import {CourcesService} from '../../services/cources.service';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
-import { LoadingService } from 'src/app/modules/shared/services/loading.service';
+import { Store, select } from '@ngrx/store';
+import { AppState } from './../../../../core/@ngrx';
+import * as CoursesActions from './../../../../core/@ngrx/courses/courses.actions';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-course-create',
     templateUrl: './course-create.component.html',
     styleUrls: ['./course-create.component.css']
 })
-export class CourseCreateComponent implements OnInit {
+export class CourseCreateComponent implements OnInit, OnDestroy {
     id: number;
     model: ICourse;
     breadcrumbItems: IBreadcrumb[];
+    private componentDestroyed$: Subject<void> = new Subject<void>();
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private courcesService: CourcesService,
-        private loadingService: LoadingService,
+        private store: Store<AppState>
     ) { }
 
     ngOnInit(): void {
         this.id = +this.route.snapshot.paramMap.get('id');
+
         this.model = {
             id: null,
             title: '',
@@ -33,43 +37,54 @@ export class CourseCreateComponent implements OnInit {
             topRated: false,
             authors: null,
         };
+
         this.breadcrumbItems = [
             {title: 'Courses', routeLink: '/courses'},
         ];
+
         if (this.id) {
             this.breadcrumbItems.push({title: 'Edit'});
-            this.getCourseById(this.id);
+
+            this.store.pipe(
+                select('courses'),
+                takeUntil(this.componentDestroyed$)
+            ).subscribe(coursesState => {
+                this.model = { ...coursesState.selectCourse };
+            });
+
+            this.store.dispatch(CoursesActions.getCourse({ courseID: +this.id }));
         } else {
             this.breadcrumbItems.push({title: 'New course'});
         }
     }
 
+    ngOnDestroy(): void {
+        this.componentDestroyed$.next();
+        this.componentDestroyed$.complete();
+    }
+
     save() {
-        this.id ? this.updateCourse(this.model) : this.createCourse(this.model);
+        const course = { ...this.model } as ICourse;
+        if (this.id) {
+            // this.updateCourse(this.model);
+            this.store.dispatch(CoursesActions.updateCourse({ course }));
+        } else {
+            // this.createCourse(this.model);
+            this.store.dispatch(CoursesActions.createCourse({ course }));
+        }
     }
 
     cancel() {
         this.router.navigate(['courses']);
     }
 
-    private getCourseById(id: number) {
-        this.courcesService.getCourseById(id).subscribe((res) => {
-            this.model = res;
-            this.loadingService.hideLoading();
-        });
-    }
+    // private createCourse(item: ICourse) {
+    //     const course = { ...item } as ICourse;
+    //     this.store.dispatch(CoursesActions.createCourse({ course }));
+    // }
 
-    private createCourse(item: ICourse) {
-        this.courcesService.createCourse(item).subscribe(() => {
-            this.loadingService.hideLoading();
-            this.router.navigate(['courses']);
-        });
-    }
-
-    private updateCourse(item: ICourse) {
-        this.courcesService.updateCourse(item).subscribe(() => {
-            this.loadingService.hideLoading();
-            this.router.navigate(['courses']);
-        });
-    }
+    // private updateCourse(item: ICourse) {
+    //     const course = { ...item } as ICourse;
+    //     this.store.dispatch(CoursesActions.updateCourse({ course }));
+    // }
 }

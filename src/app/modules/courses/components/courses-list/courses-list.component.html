@@ -7,9 +7,13 @@
     </button>
 </div>
 
-<div *ngIf="coursesList?.length">
-    <div *ngFor="let course of coursesList | orderBy:'creationDate'">
-        <app-course [course]="course" (delete)="deleteCourse($event)"></app-course>
+<div *ngIf="coursesList$"> <!-- Как правильно сделать *ngIf? -->
+    <!-- <div *ngFor="let course of coursesList | orderBy:'creationDate'"> -->
+    <div *ngFor="let course of (coursesList$ | async).data"> <!-- как применить сортировку orderBy:'creationDate' -->
+        <app-course
+            [course]="course"
+            (delete)="deleteCourse($event)"
+        ></app-course>
     </div>
 
     <div class="container course course--load-more">
@@ -21,7 +25,7 @@
     </div>
 </div>
 
-<div *ngIf="!coursesList?.length">
+<div *ngIf="!coursesList$"> <!-- Как правильно сделать *ngIf? -->
     <div class="container course course--no-data">
         <div class="row">
             <div class="col">
@@ -31,5 +35,4 @@
     </div>
 </div>
 
-
-
+<p *ngIf="(coursesList$ | async).error as value">{{ value }}</p>

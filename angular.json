@@ -122,5 +122,8 @@
             }
         }
     },
-    "defaultProject": "web-school"
+    "defaultProject": "web-school",
+    "cli": {
+        "defaultCollection": "@ngrx/schematics"
+    }
 }

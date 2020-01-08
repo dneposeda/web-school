@@ -1,15 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
 
 import { httpInterceptorProviders } from './core/interceptors';
-
+import { environment } from '../environments/environment';
+import { RootStoreModule } from './core/@ngrx/root-store.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +26,8 @@ import { httpInterceptorProviders } from './core/interceptors';
         AuthModule,
         CoursesModule,
         SharedModule,
+        RootStoreModule,
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
         AppRoutingModule, // Рутовый роутинг после всех модулей
     ],
     providers: [httpInterceptorProviders],

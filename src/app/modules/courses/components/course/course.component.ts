@@ -18,7 +18,7 @@ export class CourseComponent implements OnInit {
     faStar = faStar;
 
     @Input() course: ICourse;
-    @Output() delete: EventEmitter<number> = new EventEmitter<number>();
+    @Output() delete: EventEmitter<ICourse> = new EventEmitter<ICourse>();
     @Output() edit: EventEmitter<number> = new EventEmitter<number>();
 
     constructor() { }
@@ -27,6 +27,6 @@ export class CourseComponent implements OnInit {
     }
 
     deleteCourse(event: any): void {
-        this.delete.emit(this.course.id);
+        this.delete.emit(this.course);
     }
 }
