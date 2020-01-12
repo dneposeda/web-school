@@ -8,7 +8,7 @@
                         <div class="course-create">
                             <div class="pg-element">
                                 <h1 class="title">{{id ? 'Edit course' : 'New course'}}</h1>
-                                <form action="">
+                                <form action="" [formGroup]="form" (ngSubmit)="save()">
                                     <div class="fr-field">
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
                                             <div class="fr-label-required">
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="action-btns">
                                         <button (click)="cancel()" class="btn btn-secondary" type="button">Cancel</button>
-                                        <button (click)="save()" class="btn btn-success" type="button">Save</button>
+                                        <button class="btn btn-success" type="submit" [disabled]="form">Save</button>
                                     </div>
                                 </form>
                             </div>

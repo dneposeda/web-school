@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DurationFieldComponent } from './duration-field.component';
+import { DateFieldComponent } from './date-field.component';
 
-describe('DurationFieldComponent', () => {
-    let component: DurationFieldComponent;
-    let fixture: ComponentFixture<DurationFieldComponent>;
+describe('DateFieldComponent', () => {
+    let component: DateFieldComponent;
+    let fixture: ComponentFixture<DateFieldComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DurationFieldComponent]
+            declarations: [DateFieldComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(DurationFieldComponent);
+        fixture = TestBed.createComponent(DateFieldComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
