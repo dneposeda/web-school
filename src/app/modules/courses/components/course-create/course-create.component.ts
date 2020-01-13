@@ -1,4 +1,5 @@
 import {Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ICourse} from '../../../../interfaces/icourse';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
@@ -17,6 +18,7 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
     id: number;
     model: ICourse;
     breadcrumbItems: IBreadcrumb[];
+    courseForm: FormGroup;
     private componentDestroyed$: Subject<void> = new Subject<void>();
 
     constructor(
@@ -26,6 +28,8 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+        this.createForm();
+
         this.id = +this.route.snapshot.paramMap.get('id');
 
         this.model = {
@@ -63,15 +67,33 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         this.componentDestroyed$.complete();
     }
 
+    private createForm() {
+        this.courseForm = new FormGroup({
+            title: new FormControl(),
+            description: new FormControl(),
+            duration: new FormControl(),
+            creationDate: new FormControl(),
+            authors: new FormControl(),
+        });
+    }
+
+
     save() {
-        const course = { ...this.model } as ICourse;
-        if (this.id) {
-            // this.updateCourse(this.model);
-            this.store.dispatch(CoursesActions.updateCourse({ course }));
-        } else {
-            // this.createCourse(this.model);
-            this.store.dispatch(CoursesActions.createCourse({ course }));
-        }
+        // Form model
+        console.log(this.courseForm);
+        // Form value w/o disabled controls
+        console.log(`Saved: ${JSON.stringify(this.courseForm.value)}`);
+        // Form value w/ disabled controls
+        console.log(`Saved: ${JSON.stringify(this.courseForm.getRawValue())}`);
+
+        // const course = { ...this.model } as ICourse;
+        // if (this.id) {
+        //     // this.updateCourse(this.model);
+        //     this.store.dispatch(CoursesActions.updateCourse({ course }));
+        // } else {
+        //     // this.createCourse(this.model);
+        //     this.store.dispatch(CoursesActions.createCourse({ course }));
+        // }
     }
 
     cancel() {

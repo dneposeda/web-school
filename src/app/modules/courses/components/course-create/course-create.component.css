@@ -29,3 +29,12 @@
 .course-create .btn-secondary {
     margin-right: 12px;
 }
+
+.has-error .fr-label-required_text {
+    font-size: 14px;
+    color: #dc3545;
+}
+
+.has-error .input.ng-invalid.ng-touched {
+    border: 1px solid #dc3545;
+}

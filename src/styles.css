@@ -138,11 +138,6 @@ input::placeholder, textarea::placeholder{
     justify-content: space-between;
 }
 
-.fr-label-required_text {
-    font-size: 12px;
-    color: #6c7283;
-}
-
 .fr-field__wrapp {
     display: inline-block;
 }
