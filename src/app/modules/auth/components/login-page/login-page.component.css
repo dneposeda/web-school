@@ -29,6 +29,7 @@
 
 .login-field {
     margin-bottom: 17px;
+    position: relative;
 }
 
 .login .btn--non-style {
@@ -48,3 +49,18 @@
     padding-top: 25px;
 }
 
+.validation-msg-block {
+    opacity: 0;
+    font-size: 90%;
+    color: #dc3545;
+    transition: all 0.5s;
+}
+
+.ng-invalid .validation-msg-block {
+    opacity: 1;
+}
+
+.ng-invalid .input.ng-invalid.ng-touched {
+    border: 1px solid #dc3545;
+    transition: all 0.5s;
+}

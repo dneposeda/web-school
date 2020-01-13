@@ -5,7 +5,7 @@
                 <div class="login-wrapp">
                     <div class="login">
                         <h4 class="login-title">Login</h4>
-                        <form action="">
+                        <form action="" (ngSubmit)="login(loginForm)" #loginForm="ngForm">
                             <div class="login-field">
                                 <label for="email" class="login-lable">E-mail:</label>
                                 <input
@@ -15,7 +15,18 @@
                                     id="email"
                                     placeholder="example@mail.com"
                                     class="input"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+"
+                                    required
+                                    #emailVar="ngModel"
                                 >
+                                <span class="validation-msg-block" *ngIf="(emailVar.touched || emailVar.dirty) && emailVar.errors">
+                                    <span *ngIf="emailVar.hasError('required')">
+                                        Please enter your email address.
+                                    </span>
+                                    <span *ngIf="emailVar.hasError('pattern')">
+                                        Please enter a valid format email address.
+                                    </span>
+                                </span>
                             </div>
                             <div class="login-field">
                                 <label for="password" class="login-lable">Password:</label>
@@ -26,11 +37,27 @@
                                     id="password"
                                     class="input"
                                     placeholder="Entre password"
+                                    required
+                                    minlength="6"
+                                    #passwordVar="ngModel"
                                 >
+                                <span class="validation-msg-block" *ngIf="(passwordVar.touched || passwordVar.dirty) && passwordVar.errors">
+                                    <span *ngIf="passwordVar.hasError('required')">
+                                        Please enter your password.
+                                    </span>
+                                    <span *ngIf="passwordVar.hasError('minlength')">
+                                        The password must be longer than 6 characters.
+                                    </span>
+                                </span>
                             </div>
+
                             <div class="login-btns">
                                 <button class="btn btn--non-style" type="button">Forgot password?</button>
-                                <button (click)="login()" class="btn btn-success" type="button" [disabled]="!user.email || !user.password">Login</button>
+                                <button
+                                    class="btn btn-success"
+                                    type="submit"
+                                    [disabled]="!loginForm.valid"
+                                >Login</button>
                             </div>
                         </form>
                     </div>
