@@ -1,1 +1,33 @@
-<p>duration-field works!</p>
+<div class="fr-field">
+<!-- <div class="fr-field"
+    [ngClass]="{'has-error': (form.get('duration').touched || form.get('duration').dirty)
+        && !form.get('duration').valid }"
+> -->
+    <div class="fr-field__wrapp">
+        <div class="fr-label-required">
+            <label for="duration" class="fr-label">
+                {{ label }}
+            </label>
+            <span
+                class="fr-label-required_text">
+            <!-- <span
+                class="fr-label-required_text"
+                *ngIf="(form.get('duration').touched || form.get('duration').dirty) && form.get('duration').errors"
+            > -->
+                <span>
+                    *required
+                </span>
+                <!-- <span *ngIf="form.get('duration').hasError('required')">
+                    *required
+                </span> -->
+            </span>
+        </div>
+        <input
+            type="number"
+            id="duration"
+            placeholder="{{placeholder}}"
+            class="input"
+        >
+    </div>
+    <!-- <span class="duration">{{ model.duration | duration }}</span> -->
+</div>

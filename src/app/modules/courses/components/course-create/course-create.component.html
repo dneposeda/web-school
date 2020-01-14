@@ -9,105 +9,166 @@
                             <div class="pg-element">
                                 <h1 class="title">{{id ? 'Edit course' : 'New course'}}</h1>
                                 <form action="" [formGroup]="courseForm" (ngSubmit)="save()">
-                                    <div
-                                        class="fr-field"
-                                        [ngClass]="{'has-error': (courseForm.get('title').touched || courseForm.get('title').dirty) && !courseForm.get('title').valid }"
+                                    <div class="fr-field"
+                                        [ngClass]="{'has-error': (courseForm.get('title').touched || courseForm.get('title').dirty)
+                                            && !courseForm.get('title').valid }"
                                     >
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
                                             <div class="fr-label-required">
                                                 <label for="title" class="fr-label">Title:</label>
                                                 <span
                                                     class="fr-label-required_text"
-                                                    *ngIf="(courseForm.get('title').touched || courseForm.get('title').dirty) && courseForm.get('title').errors"
+                                                    *ngIf="(courseForm.get('title').touched || courseForm.get('title').dirty)
+                                                        && courseForm.get('title').errors"
                                                 >
                                                     <span *ngIf="courseForm.get('title').hasError('required')">
                                                         *required
+                                                    </span>
+                                                    <span *ngIf="courseForm.get('title').hasError('maxlength')">
+                                                        *max length 50
                                                     </span>
                                                 </span>
                                             </div>
                                             <input
                                                 type="text"
                                                 id="title"
-                                                placeholder="Entry course title"
+                                                placeholder="{{placeholder.title}}"
                                                 class="input"
-                                                maxlength="50"
-                                                required
                                                 formControlName="title"
                                             >
                                         </div>
                                     </div>
-                                    <div class="fr-field">
+                                    <div class="fr-field"
+                                        [ngClass]="{'has-error': (courseForm.get('description').touched || courseForm.get('description').dirty)
+                                            && !courseForm.get('description').valid }"
+                                    >
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
                                             <div class="fr-label-required">
                                                 <label for="description" class="fr-label">Description:</label>
-                                                <span class="fr-label-required_text">*required</span>
+                                                <span
+                                                    class="fr-label-required_text"
+                                                    *ngIf="(courseForm.get('description').touched || courseForm.get('description').dirty)
+                                                        && courseForm.get('description').errors"
+                                                >
+                                                    <span *ngIf="courseForm.get('description').hasError('required')">
+                                                        *required
+                                                    </span>
+                                                    <span *ngIf="courseForm.get('description').hasError('maxlength')">
+                                                        *max length 500
+                                                    </span>
+                                                </span>
                                             </div>
                                             <textarea
                                                 id="description"
                                                 class="input"
-                                                placeholder="Entre description"
-                                                maxlength="500"
-                                                required
+                                                placeholder="{{placeholder.description}}"
                                                 formControlName="description"
                                             ></textarea>
                                         </div>
                                     </div>
-                                    <div class="fr-field">
+                                    <!-- <div class="fr-field"
+                                        [ngClass]="{'has-error': (courseForm.get('duration').touched || courseForm.get('duration').dirty)
+                                            && !courseForm.get('duration').valid }"
+                                    >
                                         <div class="fr-field__wrapp">
                                             <div class="fr-label-required">
                                                 <label for="duration" class="fr-label">Duration:</label>
-                                                <span class="fr-label-required_text">*required</span>
+                                                <span
+                                                    class="fr-label-required_text"
+                                                    *ngIf="(courseForm.get('duration').touched || courseForm.get('duration').dirty) && courseForm.get('duration').errors"
+                                                >
+                                                    <span *ngIf="courseForm.get('duration').hasError('required')">
+                                                        *required
+                                                    </span>
+                                                </span>
                                             </div>
                                             <input
                                                 type="number"
                                                 id="duration"
-                                                placeholder="Entry duration"
+                                                placeholder="{{placeholder.duration}}"
                                                 class="input"
-                                                required
                                                 formControlName="duration"
                                             >
                                         </div>
                                         <span class="duration">{{ model.duration | duration }}</span>
-                                    </div>
-                                    <div class="fr-field">
+                                    </div> -->
+                                    <!-- <div class="fr-field"
+                                        [ngClass]="{'has-error':    (courseForm.get('creationDate').touched || courseForm.get('creationDate').dirty)
+                                            && !courseForm.get('creationDate').valid }"
+                                    >
                                         <div class="fr-field__wrapp">
                                             <div class="fr-label-required">
                                                 <label for="date" class="fr-label">Date:</label>
-                                                <span class="fr-label-required_text">*required</span>
+                                                <span
+                                                    class="fr-label-required_text"
+                                                    *ngIf="(courseForm.get('creationDate').touched || courseForm.get('creationDate').dirty)
+                                                        && courseForm.get('creationDate').errors"
+                                                >
+                                                    <span *ngIf="courseForm.get('creationDate').hasError('required')">
+                                                        *required
+                                                    </span>
+                                                </span>
                                             </div>
                                             <input
                                                 type="text"
                                                 id="date"
-                                                placeholder="Entry date"
+                                                placeholder="{{placeholder.creationDate}}"
                                                 class="input"
-                                                required
                                                 formControlName="creationDate"
                                             >
                                         </div>
-                                    </div>
-                                    <div class="fr-field">
+                                    </div> -->
+                                    <!-- <div class="fr-field"
+                                        [ngClass]="{'has-error':    (courseForm.get('authors').touched || courseForm.get('authors').dirty)
+                                            && !courseForm.get('authors').valid }"
+                                    >
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
                                             <div class="fr-label-required">
                                                 <label for="authors" class="fr-label">Authors:</label>
-                                                <span class="fr-label-required_text">*required</span>
+                                                <span
+                                                    class="fr-label-required_text"
+                                                    *ngIf="(courseForm.get('authors').touched || courseForm.get('authors').dirty) && courseForm.get('authors').errors"
+                                                >
+                                                    <span *ngIf="courseForm.get('authors').hasError('required')">
+                                                        *required
+                                                    </span>
+                                                </span>
                                             </div>
                                             <input
                                                 type="text"
                                                 id="authors"
-                                                placeholder="Entry authors"
+                                                placeholder="{{placeholder.authors}}"
                                                 class="input"
-                                                required
                                                 formControlName="authors"
                                             >
                                         </div>
-                                    </div>
+                                    </div> -->
+                                    <app-duration-field
+                                        placeholder="{{placeholder.duration}}"
+                                        label="Duration"
+                                        formControlName="duration"
+                                    ></app-duration-field>
+
+                                    <!-- <app-date-field
+                                        placeholder="{{placeholder.creationDate}}"
+                                        label="Date"
+                                        formControlName="creationDate"
+                                    ></app-date-field>
+
+                                    <app-author-field
+                                        placeholder="{{placeholder.authors}}"
+                                        label="Authors"
+                                        formControlName="authors"
+                                    ></app-author-field> -->
+
                                     <div class="action-btns">
                                         <button (click)="cancel()" class="btn btn-secondary" type="button">Cancel</button>
                                         <button
                                             class="btn btn-success"
                                             type="submit"
-                                            [disabled]="!courseForm.valid"
+
                                         >Save</button>
+                                        <!-- [disabled]="!courseForm.valid" -->
                                     </div>
                                 </form>
                             </div>

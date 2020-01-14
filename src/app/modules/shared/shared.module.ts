@@ -7,14 +7,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-import { DurationFieldComponent } from './components/inputs/duration-field/duration-field.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DurationPipe } from 'src/app/modules/shared/pipe/duration.pipe';
 import { OrderByPipe } from 'src/app/modules/shared/pipe/order-by.pipe';
 import { FilterByPipe } from 'src/app/modules/shared/pipe/filter-by.pipe';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './components/loading/loading.component';
 import { UserNameComponent } from './components/user-info/user-name.component';
+import { DurationFieldComponent } from './components/inputs/duration-field/duration-field.component';
 import { DateFieldComponent } from './components/inputs/date-field/date-field.component';
 import { AuthorFieldComponent } from './components/inputs/author-field/author-field.component';
 
@@ -40,6 +40,7 @@ import { AuthorFieldComponent } from './components/inputs/author-field/author-fi
         CommonModule,
         FontAwesomeModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule,
     ],
     exports: [
@@ -53,6 +54,9 @@ import { AuthorFieldComponent } from './components/inputs/author-field/author-fi
         FilterByPipe,
         LoadingComponent,
         UserNameComponent,
+        DurationFieldComponent,
+        DateFieldComponent,
+        AuthorFieldComponent,
     ]
 })
 export class SharedModule { }
