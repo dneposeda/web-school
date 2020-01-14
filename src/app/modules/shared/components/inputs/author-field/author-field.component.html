@@ -1,1 +1,27 @@
-<p>author-field works!</p>
+<div class="fr-field"
+    [ngClass]="{'has-error': (form.get('authors').touched || form.get('authors').dirty)
+        && !form.get('authors').valid }"
+>
+    <div class="fr-field__wrapp fr-field__wrapp--full-width">
+        <div class="fr-label-required">
+            <label *ngIf="label" for="authors" class="fr-label">
+                {{label}}
+            </label>
+            <span
+                class="fr-label-required_text"
+                *ngIf="(form.get('authors').touched || form.get('authors').dirty) && form.get('authors').errors"
+            >
+                <span *ngIf="form.get('authors').hasError('required')">
+                    *required
+                </span>
+            </span>
+        </div>
+        <input
+            type="text"
+            id="authors"
+            placeholder="{{placeholder}}"
+            class="input"
+            formControlName="authors"
+        >
+    </div>
+</div>

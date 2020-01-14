@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ICourse} from '../../../../interfaces/icourse';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
@@ -21,14 +21,24 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
     courseForm: FormGroup;
     private componentDestroyed$: Subject<void> = new Subject<void>();
 
+    placeholder = {
+        title: 'Entry course title',
+        creationDate: 'Entry description',
+        duration: 'Entry duration',
+        description: 'Entry date',
+        authors: 'Entry authors',
+    };
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private fb: FormBuilder
     ) { }
 
     ngOnInit(): void {
-        this.createForm();
+        // this.createForm();
+        this.buildForm();
 
         this.id = +this.route.snapshot.paramMap.get('id');
 
@@ -67,18 +77,18 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         this.componentDestroyed$.complete();
     }
 
-    private createForm() {
-        this.courseForm = new FormGroup({
-            title: new FormControl(),
-            description: new FormControl(),
-            duration: new FormControl(),
-            creationDate: new FormControl(),
-            authors: new FormControl(),
+    private buildForm() {
+        this.courseForm = this.fb.group({
+            title: ['', [Validators.required, Validators.maxLength(50)]],
+            description: ['', [Validators.required, Validators.maxLength(500)]],
+            duration: [null, [Validators.required, ]],
+            // creationDate: ['', [Validators.required, ]],
+            // authors: ['', [Validators.required, ]],
         });
     }
 
-
     save() {
+        console.log(`Value: ${this.courseForm.controls.duration.value}`);
         // Form model
         console.log(this.courseForm);
         // Form value w/o disabled controls

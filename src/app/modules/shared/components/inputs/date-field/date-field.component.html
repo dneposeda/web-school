@@ -1,1 +1,28 @@
-<p>date-field works!</p>
+<div class="fr-field"
+    [ngClass]="{'has-error':(form.get('creationDate').touched || form.get('creationDate').dirty)
+        && !form.get('creationDate').valid }"
+>
+    <div class="fr-field__wrapp">
+        <div class="fr-label-required">
+            <label *ngIf="label" for="date" class="fr-label">
+                {{label}}
+            </label>
+            <span
+                class="fr-label-required_text"
+                *ngIf="(form.get('creationDate').touched || form.get('creationDate').dirty)
+                    && form.get('creationDate').errors"
+            >
+                <span *ngIf="form.get('creationDate').hasError('required')">
+                    *required
+                </span>
+            </span>
+        </div>
+        <input
+            type="text"
+            id="date"
+            placeholder="{{placeholder}}"
+            class="input"
+            formControlName="creationDate"
+        >
+    </div>
+</div>
