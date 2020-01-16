@@ -42,15 +42,15 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
 
         this.id = +this.route.snapshot.paramMap.get('id');
 
-        this.model = {
-            id: null,
-            title: '',
-            creationDate: '',
-            duration: 0,
-            description: '',
-            topRated: false,
-            authors: null,
-        };
+        // this.model = {
+        //     id: null,
+        //     title: '',
+        //     creationDate: '',
+        //     duration: 0,
+        //     description: '',
+        //     topRated: false,
+        //     authors: null,
+        // };
 
         this.breadcrumbItems = [
             {title: 'Courses', routeLink: '/courses'},

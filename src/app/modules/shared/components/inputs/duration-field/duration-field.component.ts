@@ -11,13 +11,7 @@ const CUSTOM_VALUE_ACCESSOR = {
     selector: 'app-duration-field',
     templateUrl: './duration-field.component.html',
     styleUrls: ['./duration-field.component.css'],
-    providers: [CUSTOM_VALUE_ACCESSOR,
-        // {
-        //     provide: NG_VALUE_ACCESSOR,
-        //     useExisting: forwardRef(() => DurationFieldComponent),
-        //     multi: true
-        // }
-    ]
+    providers: [ CUSTOM_VALUE_ACCESSOR, ]
 })
 export class DurationFieldComponent implements OnInit, ControlValueAccessor {
     @Input() readonly label: string;
