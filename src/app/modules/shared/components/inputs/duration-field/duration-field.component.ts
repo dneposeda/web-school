@@ -1,16 +1,22 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+
+const CUSTOM_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => DurationFieldComponent),
+    multi: true
+};
 
 @Component({
     selector: 'app-duration-field',
     templateUrl: './duration-field.component.html',
     styleUrls: ['./duration-field.component.css'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => DurationFieldComponent),
-            multi: true
-        }
+    providers: [CUSTOM_VALUE_ACCESSOR,
+        // {
+        //     provide: NG_VALUE_ACCESSOR,
+        //     useExisting: forwardRef(() => DurationFieldComponent),
+        //     multi: true
+        // }
     ]
 })
 export class DurationFieldComponent implements OnInit, ControlValueAccessor {
@@ -19,7 +25,7 @@ export class DurationFieldComponent implements OnInit, ControlValueAccessor {
 
     @Input('value') _value;
 
-    onChange: any = () => { };
+    onChange: any = (_: any) => { };
     onTouched: any = () => { };
 
     get value() {
@@ -34,19 +40,20 @@ export class DurationFieldComponent implements OnInit, ControlValueAccessor {
 
     constructor() { }
 
-    registerOnChange(fn) {
+    registerOnChange(fn: any): void {
         this.onChange = fn;
     }
 
-    writeValue(value) {
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
+
+    writeValue(value: any): void {
         if (value) {
             this.value = value;
         }
     }
 
-    registerOnTouched(fn) {
-        this.onTouched = fn;
-    }
 
     // form: FormGroup;
 

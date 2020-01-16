@@ -27,7 +27,8 @@
             id="duration"
             placeholder="{{placeholder}}"
             class="input"
+            [(ngModel)]="value"
         >
     </div>
-    <!-- <span class="duration">{{ model.duration | duration }}</span> -->
+    <span class="duration">{{ value | duration }}</span>
 </div>

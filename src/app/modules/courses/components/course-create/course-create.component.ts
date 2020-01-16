@@ -77,16 +77,6 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         this.componentDestroyed$.complete();
     }
 
-    // private createForm() {
-    //     this.courseForm = new FormGroup({
-    //         title: new FormControl(),
-    //         description: new FormControl(),
-    //         duration: new FormControl(),
-    //         creationDate: new FormControl(),
-    //         authors: new FormControl(),
-    //     });
-    // }
-
     private buildForm() {
         this.courseForm = this.fb.group({
             title: ['', [Validators.required, Validators.maxLength(50)]],
