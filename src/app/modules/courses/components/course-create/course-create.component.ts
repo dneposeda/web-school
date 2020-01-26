@@ -1,13 +1,14 @@
-import {Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ICourse} from '../../../../interfaces/icourse';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ICourse } from '../../../../interfaces/icourse';
 import { IBreadcrumb } from 'src/app/interfaces/ibreadcrumb';
 import { Store, select } from '@ngrx/store';
 import { AppState } from './../../../../core/@ngrx';
 import * as CoursesActions from './../../../../core/@ngrx/courses/courses.actions';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthorService, IAuthor } from '../../services/author.service';
 
 @Component({
     selector: 'app-course-create',
@@ -29,46 +30,55 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         authors: 'Entry authors',
     };
 
+    authors$: Observable<IAuthor[]>;
+    // users = [
+    //     {id: '1', name: 'Anjmao'},
+    //     {id: '2', name: 'Tadeus Varnas'}
+    // ];
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private store: Store<AppState>,
-        private fb: FormBuilder
-    ) { }
+        private fb: FormBuilder,
+        private authorService: AuthorService,
+    ) {
+        this.buildForm();
+    }
 
     ngOnInit(): void {
-        // this.createForm();
-        this.buildForm();
+        this.getListAuthor();
 
         this.id = +this.route.snapshot.paramMap.get('id');
 
-        // this.model = {
-        //     id: null,
-        //     title: '',
-        //     creationDate: '',
-        //     duration: 0,
-        //     description: '',
-        //     topRated: false,
-        //     authors: null,
-        // };
-
         this.breadcrumbItems = [
-            {title: 'Courses', routeLink: '/courses'},
+            { title: 'Courses', routeLink: '/courses' },
         ];
 
         if (this.id) {
-            this.breadcrumbItems.push({title: 'Edit'});
+            this.breadcrumbItems.push({ title: 'Edit' });
 
             this.store.pipe(
                 select('courses'),
                 takeUntil(this.componentDestroyed$)
             ).subscribe(coursesState => {
                 this.model = { ...coursesState.selectCourse };
+                this.patchFormValues();
             });
 
             this.store.dispatch(CoursesActions.getCourse({ courseID: +this.id }));
         } else {
-            this.breadcrumbItems.push({title: 'New course'});
+            this.model = {
+                id: null,
+                topRated: false,
+                title: '',
+                description: '',
+                duration: 0,
+                creationDate: '',
+                authors: []
+            };
+
+            this.breadcrumbItems.push({ title: 'New course' });
         }
     }
 
@@ -77,46 +87,51 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         this.componentDestroyed$.complete();
     }
 
+    getListAuthor() {
+        this.authors$ = this.authorService.getList();
+    }
+
     private buildForm() {
         this.courseForm = this.fb.group({
             title: ['', [Validators.required, Validators.maxLength(50)]],
             description: ['', [Validators.required, Validators.maxLength(500)]],
-            duration: ['', [Validators.required, ]],
-            // creationDate: ['', [Validators.required, ]],
-            // authors: ['', [Validators.required, ]],
+            duration: [],
+            creationDate: [],
+            authors: [],
+        });
+    }
+
+    private patchFormValues() {
+        this.courseForm.patchValue({
+            title: this.model.title,
+            description: this.model.description,
+            duration: { duration: this.model.duration || ''},
+            creationDate: { creationDate: this.model.creationDate || ''},
+            authors: { authors: this.model.authors || ''}
         });
     }
 
     save() {
-        console.log(`Value: ${this.courseForm.controls.duration.value}`);
-        // Form model
-        console.log(this.courseForm);
-        // Form value w/o disabled controls
-        console.log(`Saved: ${JSON.stringify(this.courseForm.value)}`);
-        // Form value w/ disabled controls
-        console.log(`Saved: ${JSON.stringify(this.courseForm.getRawValue())}`);
+        const form = this.courseForm.getRawValue();
+        const course: ICourse = {
+            id: this.model.id || null,
+            topRated: this.model.topRated || null,
+            title: form.title,
+            description: form.description,
+            duration: form.duration.duration,
+            creationDate: form.creationDate.creationDate,
+            authors: form.authors.authors
+        };
 
-        // const course = { ...this.model } as ICourse;
-        // if (this.id) {
-        //     // this.updateCourse(this.model);
-        //     this.store.dispatch(CoursesActions.updateCourse({ course }));
-        // } else {
-        //     // this.createCourse(this.model);
-        //     this.store.dispatch(CoursesActions.createCourse({ course }));
-        // }
+        console.log(form, course);
+        if (this.id) {
+            this.store.dispatch(CoursesActions.updateCourse({ course }));
+        } else {
+            this.store.dispatch(CoursesActions.createCourse({ course }));
+        }
     }
 
     cancel() {
         this.router.navigate(['courses']);
     }
-
-    // private createCourse(item: ICourse) {
-    //     const course = { ...item } as ICourse;
-    //     this.store.dispatch(CoursesActions.createCourse({ course }));
-    // }
-
-    // private updateCourse(item: ICourse) {
-    //     const course = { ...item } as ICourse;
-    //     this.store.dispatch(CoursesActions.updateCourse({ course }));
-    // }
 }

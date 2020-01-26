@@ -1,5 +1,8 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, forwardRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS, FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { CustomValidators } from './../../../validators';
 
 const CUSTOM_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -7,84 +10,83 @@ const CUSTOM_VALUE_ACCESSOR = {
     multi: true
 };
 
+const CUSTOM_NG_VALIDATORS = {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => DurationFieldComponent),
+    multi: true
+};
+export interface DurationFormValues {
+    duration: string;
+}
+
 @Component({
     selector: 'app-duration-field',
     templateUrl: './duration-field.component.html',
     styleUrls: ['./duration-field.component.css'],
-    providers: [ CUSTOM_VALUE_ACCESSOR, ]
+    providers: [CUSTOM_VALUE_ACCESSOR, CUSTOM_NG_VALIDATORS],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DurationFieldComponent implements OnInit, ControlValueAccessor {
+
+export class DurationFieldComponent implements OnDestroy, ControlValueAccessor {
     @Input() readonly label: string;
     @Input() readonly placeholder: string;
 
-    @Input('value') _value;
+    form: FormGroup;
+    subscriptions: Subscription[] = [];
 
-    onChange: any = (_: any) => { };
-    onTouched: any = () => { };
-
-    get value() {
-        return this._value;
+    get value(): DurationFormValues {
+        return this.form.value;
     }
 
-    set value(val) {
-        this._value = val;
-        this.onChange(val);
+    set value(value: DurationFormValues) {
+        this.form.setValue(value);
+        this.onChange(value);
         this.onTouched();
     }
 
-    constructor() { }
+    get durationControl() {
+        return this.form.controls.duration;
+    }
+
+    constructor(private fb: FormBuilder) {
+        this.form = this.fb.group({
+            duration: ['', [Validators.required, CustomValidators.positiveNumber]],
+        });
+
+        this.subscriptions.push(
+            this.form.valueChanges.subscribe(value => {
+                this.onChange(value);
+                this.onTouched();
+            })
+        );
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.forEach(s => s.unsubscribe());
+    }
+
+    onChange: any = () => { };
+    onTouched: any = () => { };
 
     registerOnChange(fn: any): void {
         this.onChange = fn;
-    }
-
-    registerOnTouched(fn: any): void {
-        this.onTouched = fn;
     }
 
     writeValue(value: any): void {
         if (value) {
             this.value = value;
         }
+
+        if (value === null) {
+            this.form.reset();
+        }
     }
 
-
-    // form: FormGroup;
-
-    // constructor( private fb: FormBuilder) {
-    //     this.form = this.fb.group({
-    //         duration: ['', Validators.required]
-    //     });
-    // }
-
-    ngOnInit() {
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
     }
 
-    // registerOnChange(fn) {
-    //     this.onChange = fn;
-    // }
-
-    // registerOnTouched(fn) {
-    //     this.onTouched = fn;
-    // }
-
-    // writeValue(val) {
-    //     if (val) {
-    //         this.value = val;
-    //     }
-    // }
-
-    // get value() {
-    //     return this.value;
-    // }
-
-    // set value(val) {
-    //     this.value = val;
-    //     this.onChange(val);
-    //     this.onTouched();
-    // }
-
-    // onChange: any = () => {};
-    // onTouched: any = () => {};
-
+    validate(_: FormControl) {
+        return this.form.valid ? null : { duration: { valid: false, }, };
+    }
 }

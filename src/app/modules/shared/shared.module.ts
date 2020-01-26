@@ -18,6 +18,8 @@ import { DurationFieldComponent } from './components/inputs/duration-field/durat
 import { DateFieldComponent } from './components/inputs/date-field/date-field.component';
 import { AuthorFieldComponent } from './components/inputs/author-field/author-field.component';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 @NgModule({
     declarations: [
@@ -42,6 +44,7 @@ import { AuthorFieldComponent } from './components/inputs/author-field/author-fi
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        NgSelectModule,
     ],
     exports: [
         NotFoundComponent,

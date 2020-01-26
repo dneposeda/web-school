@@ -13,7 +13,6 @@ import { CourseCreateComponent } from './components/course-create/course-create.
 import { HighlightDirective } from 'src/app/directives/highlight.directive';
 import {CoursesRoutingModule} from './courses-routing.module';
 
-
 @NgModule({
     declarations: [
         SearchComponent,

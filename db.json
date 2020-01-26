@@ -2,27 +2,61 @@
   "courses": [
     {
       "id": 1,
-      "title": "Video Course 1. JavaScript tag",
-      "creationDate": "06 Dec 2019",
-      "duration": 88,
+      "topRated": true,
+      "title": "Course 1. JavaScript tag",
       "description": "Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.",
-      "topRated": true
+      "duration": 88,
+      "creationDate": "2019-12-06",
+      "authors": [
+        {
+          "name": "Dimitriy",
+          "id": 2
+        },
+        {
+          "name": "Eugeniy",
+          "id": 3
+        },
+        {
+          "name": "Denis",
+          "id": 1
+        }
+      ]
     },
     {
       "id": 2,
+      "topRated": null,
       "title": "Video Course 2. Java tag",
-      "creationDate": "12/30/2019",
-      "duration": 61,
       "description": "Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.",
-      "topRated": false
+      "duration": 61,
+      "creationDate": "2019-12-30",
+      "authors": [
+        {
+          "name": "Denis",
+          "id": 1
+        },
+        {
+          "name": "Dimitriy",
+          "id": 2
+        }
+      ]
     },
     {
       "id": 4,
+      "topRated": true,
       "title": "Video Course 4. PHP",
-      "creationDate": "09 November 2019",
-      "duration": 60,
       "description": "Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.",
-      "topRated": true
+      "duration": 60,
+      "creationDate": "2019-11-09",
+      "authors": [
+        {
+          "name": "Dimitriy",
+          "id": 2
+        },
+        {
+          "name": "Eugeniy",
+          "id": 3
+        }
+      ]
     },
     {
       "id": 5,
@@ -31,7 +65,20 @@
       "duration": 360,
       "description": "Подходим к самому интересному — языкам, безупречное владение которыми поможет вам попасть в сферу мобильной разработки. Swift не вполне универсален: он еще не полностью вытеснил Objective-C из приложений для Apple, но перспективы у него блестящие.",
       "topRated": false,
-      "authors": "Denissss"
+      "authors": [
+        {
+          "name": "Denis",
+          "id": 1
+        },
+        {
+          "name": "Dimitriy",
+          "id": 2
+        },
+        {
+          "name": "Eugeniy",
+          "id": 3
+        }
+      ]
     },
     {
       "id": 6,
@@ -40,7 +87,7 @@
       "duration": 258,
       "description": "Python – универсальный язык программирования, используемый не только в вопросах создания обучаемых алгоритмов, но и для решения других задач: разработки веб-приложений, серверного ПО, медиа инструментов. Пик интереса к Python возник в 2017 году (совпадает с бумом машинного обучения), и 2018 только усилил данную тенденцию.",
       "topRated": false,
-      "authors": "Ментор"
+      "authors": []
     },
     {
       "id": 7,
@@ -49,7 +96,7 @@
       "duration": 159,
       "description": "Scala был разработан в попытках переписать Java. И, несмотря на то, что он не смог заменить собой Java, данный масштабируемый язык программирования стал востребован для выполнения на JVM. В настоящее время Scala использует LinkedIn, что позволяет прогнозировать рост популярности языка в 2019 году.",
       "topRated": false,
-      "authors": "LinkedIn"
+      "authors": []
     },
     {
       "id": 8,
@@ -58,7 +105,7 @@
       "duration": 147,
       "description": "Kotlin – современный, простой, удобный язык программирования, используемый вместе с Java. По мнению многих разработчиков, Kotlin предоставляет возможности, недоступные для других кодов. Единственный его недостаток – он сравнительно новый, и применяется пока преимущественно для разработки Android-приложений. Но это может стать и его преимуществом: из-за малой распространенности, разработчики Kotlin высоко ценятся и могут рассчитывать на хорошие зарплаты в 2019 году. Особенно, если совместить знание данного языка с уверенным владением Java.",
       "topRated": false,
-      "authors": "ментор Илья"
+      "authors": []
     },
     {
       "id": 9,
@@ -67,7 +114,7 @@
       "duration": 369,
       "description": "Язык программирования, официальный слоган которого «Ruby – лучший друг разработчика», и это действительно так. Он спроектирован простым, понятным, легко усвояемым. Тем не менее, это язык высокого уровня, позволяющий создавать чистый и читабельный код.",
       "topRated": false,
-      "authors": "mkdev"
+      "authors": []
     },
     {
       "id": 10,
@@ -76,7 +123,7 @@
       "duration": 123,
       "description": "Легкий, понятный и универсальный режим разметки, совместимый с любым браузером. Начальный уровень HTML потребуется не только программистам и веб-разработчикам, но и интернет-маркетологам, копирайтерам, SEO-оптимизаторам. Знание HTML – серьезный плюс для любого специалиста, имеющего дело с интернет-технологиями. К примеру, он используется в технологии AMP, подробнее о которой можно прочитать в отдельной статье.",
       "topRated": false,
-      "authors": "SEO"
+      "authors": []
     },
     {
       "id": 11,
@@ -85,7 +132,7 @@
       "duration": 456,
       "description": "Экспериментальный» язык корпорации Google, разработанный в 2009 году. Спустя 10 лет он прижился и активно используется для поддержки многих Google-проектов и сервисов. Go – современный язык, рассчитанный для работы с многоядерными процессорами с хорошей производительной мощностью. Он прост и понятен, позволяет эффективно применять массивные вычислительные кластеры, лежащие в основе веб-сервисов.",
       "topRated": false,
-      "authors": "Google"
+      "authors": []
     },
     {
       "id": 12,
@@ -94,7 +141,25 @@
       "duration": 789,
       "description": "Язык программирования с лаконичным названием R разработан для применения в анализе, графическом представлении данных и статистике. За последние 5 лет интерес к R (и к специалистам, уверенно владеющим языком) неуклонно растет. Он менее известен в среде начинающих программистов, чем Python, и реже становится предметом их изучения. Поэтому конкуренция среди разработчиков R – ниже, а средний доход – выше (от 57 000$).",
       "topRated": false,
-      "authors": "Stack Overflow"
+      "authors": []
+    },
+    {
+      "id": 15,
+      "topRated": null,
+      "title": "Test Course One",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "duration": 2134,
+      "creationDate": "2019-12-31",
+      "authors": [
+        {
+          "id": 589,
+          "name": "Benita"
+        },
+        {
+          "id": 8199,
+          "name": "Martina"
+        }
+      ]
     }
   ],
   "users": [
@@ -104,6 +169,44 @@
       "id": 1,
       "firstName": "UserName",
       "lastName": "UserLastName"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Denis",
+      "id": 1
+    },
+    {
+      "name": "Dimitriy",
+      "id": 2
+    },
+    {
+      "name": "Eugeniy",
+      "id": 3
+    },
+    {
+      "id": 8379,
+      "name": "Lucinda"
+    },
+    {
+      "id": 2597,
+      "name": "Traci"
+    },
+    {
+      "id": 8199,
+      "name": "Martina"
+    },
+    {
+      "id": 589,
+      "name": "Benita"
+    },
+    {
+      "id": 3198,
+      "name": "Rosemarie"
+    },
+    {
+      "id": 3572,
+      "name": "Harriett"
     }
   ]
 }

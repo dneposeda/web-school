@@ -1,27 +1,29 @@
 <div class="fr-field"
-    [ngClass]="{'has-error': (form.get('authors').touched || form.get('authors').dirty)
-        && !form.get('authors').valid }"
+    [formGroup]="form"
+    [ngClass]="{'has-error': (authorControl.touched || authorControl.dirty)
+        && !authorControl.valid }"
 >
     <div class="fr-field__wrapp fr-field__wrapp--full-width">
         <div class="fr-label-required">
-            <label *ngIf="label" for="authors" class="fr-label">
+            <label for="authors" class="fr-label">
                 {{label}}
             </label>
             <span
                 class="fr-label-required_text"
-                *ngIf="(form.get('authors').touched || form.get('authors').dirty) && form.get('authors').errors"
+                *ngIf="authorControl.touched && authorControl.hasError('required')"
             >
-                <span *ngIf="form.get('authors').hasError('required')">
-                    *required
-                </span>
+                <span>*required</span>
             </span>
         </div>
-        <input
-            type="text"
-            id="authors"
+        <ng-select
+            class="field-custom"
+            [items]="authors$ | async"
+            bindLabel="name"
+            [multiple]="true"
+            [(ngModel)]="selectedAuthor"
             placeholder="{{placeholder}}"
-            class="input"
             formControlName="authors"
         >
+        </ng-select>
     </div>
 </div>

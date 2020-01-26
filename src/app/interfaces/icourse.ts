@@ -1,3 +1,5 @@
+import { IAuthor } from '../modules/courses/services/author.service';
+
 export interface ICourse {
     id: number;
     title: string;
@@ -5,5 +7,5 @@ export interface ICourse {
     duration: number;
     description: string;
     topRated: boolean;
-    authors?: string;
+    authors?: IAuthor[];
 }

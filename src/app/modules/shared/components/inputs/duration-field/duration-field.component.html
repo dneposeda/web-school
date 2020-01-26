@@ -1,34 +1,37 @@
-<div class="fr-field">
-<!-- <div class="fr-field"
-    [ngClass]="{'has-error': (form.get('duration').touched || form.get('duration').dirty)
-        && !form.get('duration').valid }"
-> -->
+<div
+    class="fr-field"
+    [formGroup]="form"
+    [ngClass]="{'has-error': (durationControl.touched || durationControl.dirty)
+        && !durationControl.valid }"
+>
     <div class="fr-field__wrapp">
         <div class="fr-label-required">
             <label for="duration" class="fr-label">
                 {{ label }}
             </label>
             <span
-                class="fr-label-required_text">
-            <!-- <span
                 class="fr-label-required_text"
-                *ngIf="(form.get('duration').touched || form.get('duration').dirty) && form.get('duration').errors"
-            > -->
-                <span>
-                    *required
-                </span>
-                <!-- <span *ngIf="form.get('duration').hasError('required')">
-                    *required
-                </span> -->
+                *ngIf="durationControl.touched && durationControl.hasError('required')"
+            >
+                <span>* required</span>
+            </span>
+            <span
+                class="fr-label-required_text"
+                *ngIf="durationControl.touched && durationControl.hasError('positiveNumber')"
+            >
+                <span>* negative number</span>
             </span>
         </div>
         <input
+            formControlName="duration"
             type="number"
             id="duration"
             placeholder="{{placeholder}}"
             class="input"
-            [(ngModel)]="value"
         >
     </div>
-    <span class="duration">{{ value | duration }}</span>
+    <span
+        class="duration"
+        *ngIf="durationControl.valid"
+    >{{ value.duration | duration }}</span>
 </div>

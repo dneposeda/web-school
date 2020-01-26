@@ -66,90 +66,14 @@
                                             ></textarea>
                                         </div>
                                     </div>
-                                    <!-- <div class="fr-field"
-                                        [ngClass]="{'has-error': (courseForm.get('duration').touched || courseForm.get('duration').dirty)
-                                            && !courseForm.get('duration').valid }"
-                                    >
-                                        <div class="fr-field__wrapp">
-                                            <div class="fr-label-required">
-                                                <label for="duration" class="fr-label">Duration:</label>
-                                                <span
-                                                    class="fr-label-required_text"
-                                                    *ngIf="(courseForm.get('duration').touched || courseForm.get('duration').dirty) && courseForm.get('duration').errors"
-                                                >
-                                                    <span *ngIf="courseForm.get('duration').hasError('required')">
-                                                        *required
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <input
-                                                type="number"
-                                                id="duration"
-                                                placeholder="{{placeholder.duration}}"
-                                                class="input"
-                                                formControlName="duration"
-                                            >
-                                        </div>
-                                        <span class="duration">{{ model.duration | duration }}</span>
-                                    </div> -->
-                                    <!-- <div class="fr-field"
-                                        [ngClass]="{'has-error':    (courseForm.get('creationDate').touched || courseForm.get('creationDate').dirty)
-                                            && !courseForm.get('creationDate').valid }"
-                                    >
-                                        <div class="fr-field__wrapp">
-                                            <div class="fr-label-required">
-                                                <label for="date" class="fr-label">Date:</label>
-                                                <span
-                                                    class="fr-label-required_text"
-                                                    *ngIf="(courseForm.get('creationDate').touched || courseForm.get('creationDate').dirty)
-                                                        && courseForm.get('creationDate').errors"
-                                                >
-                                                    <span *ngIf="courseForm.get('creationDate').hasError('required')">
-                                                        *required
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                id="date"
-                                                placeholder="{{placeholder.creationDate}}"
-                                                class="input"
-                                                formControlName="creationDate"
-                                            >
-                                        </div>
-                                    </div> -->
-                                    <!-- <div class="fr-field"
-                                        [ngClass]="{'has-error':    (courseForm.get('authors').touched || courseForm.get('authors').dirty)
-                                            && !courseForm.get('authors').valid }"
-                                    >
-                                        <div class="fr-field__wrapp fr-field__wrapp--full-width">
-                                            <div class="fr-label-required">
-                                                <label for="authors" class="fr-label">Authors:</label>
-                                                <span
-                                                    class="fr-label-required_text"
-                                                    *ngIf="(courseForm.get('authors').touched || courseForm.get('authors').dirty) && courseForm.get('authors').errors"
-                                                >
-                                                    <span *ngIf="courseForm.get('authors').hasError('required')">
-                                                        *required
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                id="authors"
-                                                placeholder="{{placeholder.authors}}"
-                                                class="input"
-                                                formControlName="authors"
-                                            >
-                                        </div>
-                                    </div> -->
+
                                     <app-duration-field
                                         placeholder="{{placeholder.duration}}"
                                         label="Duration"
                                         formControlName="duration"
                                     ></app-duration-field>
 
-                                    <!-- <app-date-field
+                                    <app-date-field
                                         placeholder="{{placeholder.creationDate}}"
                                         label="Date"
                                         formControlName="creationDate"
@@ -159,16 +83,16 @@
                                         placeholder="{{placeholder.authors}}"
                                         label="Authors"
                                         formControlName="authors"
-                                    ></app-author-field> -->
+                                        [authors$]="authors$"
+                                    ></app-author-field>
 
                                     <div class="action-btns">
                                         <button (click)="cancel()" class="btn btn-secondary" type="button">Cancel</button>
                                         <button
                                             class="btn btn-success"
                                             type="submit"
-
+                                            [disabled]="!courseForm.valid"
                                         >Save</button>
-                                        <!-- [disabled]="!courseForm.valid" -->
                                     </div>
                                 </form>
                             </div>
