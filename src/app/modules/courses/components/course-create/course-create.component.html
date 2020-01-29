@@ -10,16 +10,14 @@
                                 <h1 class="title">{{id ? 'Edit course' : 'New course'}}</h1>
                                 <form action="" [formGroup]="courseForm" (ngSubmit)="save()">
                                     <div class="fr-field"
-                                        [ngClass]="{'has-error': (courseForm.get('title').touched || courseForm.get('title').dirty)
-                                            && !courseForm.get('title').valid }"
+                                        [ngClass]="{'has-error': hasError('title') }"
                                     >
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
                                             <div class="fr-label-required">
                                                 <label for="title" class="fr-label">Title:</label>
                                                 <span
                                                     class="fr-label-required_text"
-                                                    *ngIf="(courseForm.get('title').touched || courseForm.get('title').dirty)
-                                                        && courseForm.get('title').errors"
+                                                    *ngIf="hasError('title')"
                                                 >
                                                     <span *ngIf="courseForm.get('title').hasError('required')">
                                                         *required
@@ -39,16 +37,14 @@
                                         </div>
                                     </div>
                                     <div class="fr-field"
-                                        [ngClass]="{'has-error': (courseForm.get('description').touched || courseForm.get('description').dirty)
-                                            && !courseForm.get('description').valid }"
+                                        [ngClass]="{'has-error': hasError('description') }"
                                     >
                                         <div class="fr-field__wrapp fr-field__wrapp--full-width">
                                             <div class="fr-label-required">
                                                 <label for="description" class="fr-label">Description:</label>
                                                 <span
                                                     class="fr-label-required_text"
-                                                    *ngIf="(courseForm.get('description').touched || courseForm.get('description').dirty)
-                                                        && courseForm.get('description').errors"
+                                                    *ngIf="hasError('description')"
                                                 >
                                                     <span *ngIf="courseForm.get('description').hasError('required')">
                                                         *required
@@ -83,7 +79,7 @@
                                         placeholder="{{placeholder.authors}}"
                                         label="Authors"
                                         formControlName="authors"
-                                        [authors$]="authors$"
+                                        [isInvalid]="hasError('authors')"
                                     ></app-author-field>
 
                                     <div class="action-btns">

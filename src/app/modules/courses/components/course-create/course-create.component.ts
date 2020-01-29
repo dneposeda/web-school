@@ -8,7 +8,7 @@ import { AppState } from './../../../../core/@ngrx';
 import * as CoursesActions from './../../../../core/@ngrx/courses/courses.actions';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AuthorService, IAuthor } from '../../services/author.service';
+import { IAuthor } from '../../services/author.service';
 
 @Component({
     selector: 'app-course-create',
@@ -41,14 +41,11 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private store: Store<AppState>,
         private fb: FormBuilder,
-        private authorService: AuthorService,
     ) {
         this.buildForm();
     }
 
     ngOnInit(): void {
-        this.getListAuthor();
-
         this.id = +this.route.snapshot.paramMap.get('id');
 
         this.breadcrumbItems = [
@@ -87,17 +84,13 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
         this.componentDestroyed$.complete();
     }
 
-    getListAuthor() {
-        this.authors$ = this.authorService.getList();
-    }
-
     private buildForm() {
         this.courseForm = this.fb.group({
             title: ['', [Validators.required, Validators.maxLength(50)]],
             description: ['', [Validators.required, Validators.maxLength(500)]],
             duration: [],
             creationDate: [],
-            authors: [],
+            authors: [null, [Validators.required]],
         });
     }
 
@@ -107,7 +100,7 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
             description: this.model.description,
             duration: { duration: this.model.duration || ''},
             creationDate: { creationDate: this.model.creationDate || ''},
-            authors: { authors: this.model.authors || ''}
+            authors: this.model.authors || null
         });
     }
 
@@ -120,7 +113,7 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
             description: form.description,
             duration: form.duration.duration,
             creationDate: form.creationDate.creationDate,
-            authors: form.authors.authors
+            authors: form.authors
         };
 
         console.log(form, course);
@@ -133,5 +126,10 @@ export class CourseCreateComponent implements OnInit, OnDestroy {
 
     cancel() {
         this.router.navigate(['courses']);
+    }
+
+    hasError(field: string): boolean {
+        const fld = this.courseForm.get(field);
+        return fld && (fld.touched || fld.dirty) && fld.invalid;
     }
 }

@@ -1,28 +1,25 @@
-<div class="fr-field"
-    [formGroup]="form"
-    [ngClass]="{'has-error': (authorControl.touched || authorControl.dirty)
-        && !authorControl.valid }"
->
+<div class="fr-field" [ngClass]="{'has-error': isInvalid }">
     <div class="fr-field__wrapp fr-field__wrapp--full-width">
         <div class="fr-label-required">
             <label for="authors" class="fr-label">
                 {{label}}
             </label>
             <span
+                *ngIf="isInvalid"
                 class="fr-label-required_text"
-                *ngIf="authorControl.touched && authorControl.hasError('required')"
             >
                 <span>*required</span>
             </span>
         </div>
         <ng-select
+            id="authors"
             class="field-custom"
             [items]="authors$ | async"
             bindLabel="name"
             [multiple]="true"
             [(ngModel)]="selectedAuthor"
             placeholder="{{placeholder}}"
-            formControlName="authors"
+            (ngModelChange)="changed()"
         >
         </ng-select>
     </div>
